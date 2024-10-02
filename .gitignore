@@ -161,5 +161,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+<<<<<<< HEAD
 # Output directory
+=======
+# Outputs directory
+>>>>>>> 15be5b7 (temp modified requirements.txt)
 outputs/
