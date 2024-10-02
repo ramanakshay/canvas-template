@@ -14,7 +14,7 @@ class Model(object):
         
         self.network = NeuralNetwork().to(self.device)
         
-        self.learning_rate = self.config["learning_rate"]
+        self.learning_rate = self.config.learning_rate
         self.optimizer = torch.optim.Adam(self.network.parameters(), lr=self.learning_rate)
         self.grad_enabled = False
     

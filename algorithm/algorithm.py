@@ -4,12 +4,12 @@ from torch import nn
 
 
 class Algorithm(object):
-    def __init__(self, model, dataset, config):
+    def __init__(self, dataset, model, config):
         self.model = model
         self.dataset = dataset
         self.config = config
         
-        self.batch_size = self.config["batch_size"]
+        self.batch_size = self.config.batch_size
         self.train_dataloader = DataLoader(self.dataset["train"], batch_size=self.batch_size)
         self.test_dataloader = DataLoader(self.dataset["test"], batch_size=self.batch_size)
 
@@ -51,7 +51,7 @@ class Algorithm(object):
         print(f"Test Error: \n Accuracy: {(100.0*test_correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
     
     def run(self):
-        epochs = self.config["epochs"]
+        epochs = self.config.epochs
         for epoch in range(epochs):
             print(f"Epoch {epoch+1}\n-------------------------------")
             self.train()

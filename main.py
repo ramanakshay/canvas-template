@@ -9,9 +9,6 @@ from omegaconf import DictConfig, OmegaConf
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
-    ## MODEL ##
-    model = Model(config.agent)
-    
     ## DATASET ##
     dataset = {
         "train": datasets.FashionMNIST(
@@ -26,8 +23,11 @@ def main(config : DictConfig) -> None:
             transform=ToTensor())
     }
 
+    ## MODEL ##
+    model = Model(config.agent)
+
     ## ALGORITHM ##
-    alg = Algorithm(model, dataset, config.algorithm)
+    alg = Algorithm(dataset, model, config.algorithm)
     alg.run()
 
 if __name__ == "__main__":
