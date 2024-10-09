@@ -65,7 +65,7 @@ This architecture is inspired from the agent-environment interface in reinforcme
 
 ## Folder Structure
 ```
-├──  agent
+├──  agent              - this folder contains all code (models, networks) of the agent
 │   ├── model.py
 │   └── network.py
 │
@@ -74,36 +74,21 @@ This architecture is inspired from the agent-environment interface in reinforcme
 │   └── data_loader.py
 │
 │
-├── algorithm             - this folder contains different algorithms of your project.
+├── algorithm             - this folder contains different algorithms of your project
 │   └── algorithm.py
 │
 │
-├──  config           - this folder contains optional utils of your project
+├──  config
 │    └── config.yaml  - YAML config file for project
 │
 │
-├──  utils            - entry point of the project
+├──  utils            - this (optional) folder contains utilities of your project
 │    └── utils.py
 │
 │
-└── main.py
-
+└── main.py           - entry point of the project
 
 ```
-## Components
-
-### Agent
-
-### Data
-
-### Algorithm
-
-
-### Config Management
-
-
-### Main
-
 
 # TODO
 
