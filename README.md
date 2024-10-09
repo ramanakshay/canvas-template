@@ -56,7 +56,7 @@ python main.py
 
 <div align="center">
 
-<img align="center" hight="600" width="600" src="assets/images/architecture.svg">
+<img align="center" src="assets/images/architecture.svg">
 
 </div>
 
