@@ -47,7 +47,7 @@ python main.py
 
 ## Requirements
 - [pytorch](https://pytorch.org/) (An open source deep learning platform)
-- [hydra]() (A framework for configuring complex applications)
+- [hydra](https://hydra.cc/) (A framework for configuring complex applications)
 
 
 # Details
