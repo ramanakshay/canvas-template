@@ -1,6 +1,6 @@
 # canvas
 
-A simple, flexible, and well designed pytorch template for your deep learning projects. The main idea behind this template is to model all machine learning tasks as interactions between an agent with its data or environment. All components of the project are built around this core idea.
+A simple, flexible, and well designed pytorch template for your deep learning projects. The main idea behind this template is to model all machine learning tasks as interactions between an agent with its environment or some data. All components of the project are built around this core idea.
 
 There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** and see the installation section to download the template:
 
@@ -54,6 +54,8 @@ python main.py
 
 ## Project Architecture
 
+This architecture is inspired from the agent-environment interface in reinforcment learning. The template extends this concept to support all types of machine learning tasks.
+
 <div align="center">
 
 <img align="center" src="assets/images/architecture.svg">
@@ -62,7 +64,32 @@ python main.py
 
 
 ## Folder Structure
+```
+├──  agent
+│   ├── model.py
+│   └── network.py
+│
+│
+├── data               - this folder contains datasets and code for data loaders
+│   └── data_loader.py
+│
+│
+├── algorithm             - this folder contains different algorithms of your project.
+│   └── algorithm.py
+│
+│
+├──  config           - this folder contains optional utils of your project
+│    └── config.yaml  - YAML config file for project
+│
+│
+├──  utils            - entry point of the project
+│    └── utils.py
+│
+│
+└── main.py
 
+
+```
 ## Components
 
 ### Agent
