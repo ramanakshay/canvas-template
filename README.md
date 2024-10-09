@@ -40,7 +40,7 @@ git commit -m “initial commit from https://github.com/ramanakshay/canvas”
 pip install -r requirements.txt
 ```
 
-4. Test the code
+4. Test the code.
 ```
 python main.py
 ```
@@ -53,6 +53,12 @@ python main.py
 # Details
 
 ## Project Architecture
+
+<div align="center">
+
+<img align="center" hight="600" width="600" src="assets/images/architecture.svg">
+
+</div>
 
 
 ## Folder Structure
