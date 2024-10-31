@@ -32,7 +32,7 @@ cd canvas
 rm -rf .git
 git init
 git add --all
-git commit -m “initial commit from https://github.com/ramanakshay/canvas”
+git commit -m “initial canvas commit”
 ```
 
 3. Install dependencies from requirements file. Make sure to create a virtual environment before running this command.
