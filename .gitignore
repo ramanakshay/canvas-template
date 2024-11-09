@@ -166,3 +166,6 @@ cython_debug/
 
 # Outputs directory
 outputs/
+
+# Datasets directors
+datasets/

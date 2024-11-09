@@ -3,7 +3,7 @@ from torch.utils.data import DataLoader
 from torch import nn
 
 
-class Algorithm(object):
+class Trainer(object):
     def __init__(self, dataset, model, config):
         self.model = model
         self.dataset = dataset
@@ -14,7 +14,7 @@ class Algorithm(object):
         self.test_dataloader = DataLoader(self.dataset["test"], batch_size=self.batch_size)
 
         self.loss_function = nn.CrossEntropyLoss()
-    
+
     def train(self):
         size = len(self.train_dataloader.dataset)
         self.model.enable_grad(True)
@@ -30,7 +30,7 @@ class Algorithm(object):
             if batch % 100 == 0:
                 train_loss, current = loss.item(), (batch + 1) * len(X)
                 print(f"loss: {train_loss:>7f}  [{current:>5d}/{size:>5d}]")
-                
+
     def test(self):
         size = len(self.test_dataloader.dataset)
         self.model.enable_grad(False)
@@ -44,12 +44,12 @@ class Algorithm(object):
 
                 test_loss += loss.item()
                 test_correct += correct.item()
-        
+
         test_loss /= self.batch_size
         test_correct /= size
-        
+
         print(f"Test Error: \n Accuracy: {(100.0*test_correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
-    
+
     def run(self):
         epochs = self.config.epochs
         for epoch in range(epochs):
@@ -57,5 +57,4 @@ class Algorithm(object):
             self.train()
             self.test()
         print("Done!")
-        
-    
+

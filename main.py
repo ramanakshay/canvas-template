@@ -1,5 +1,5 @@
-from algorithm.algorithm import Algorithm
-from agent.model import Model
+from algorithm.train import Trainer
+from model.classifier import Classifier
 
 from torchvision import datasets
 from torchvision.transforms import ToTensor
@@ -12,22 +12,22 @@ def main(config : DictConfig) -> None:
     ## DATASET ##
     dataset = {
         "train": datasets.FashionMNIST(
-            root="data",
+            root=config.data.path,
             train=True,
             download=True,
             transform=ToTensor()),
         "test": datasets.FashionMNIST(
-            root="data",
+            root=config.data.path,
             train=False,
             download=True,
             transform=ToTensor())
     }
 
     ## MODEL ##
-    model = Model(config.agent)
+    model = Classifier(config.agent)
 
     ## ALGORITHM ##
-    alg = Algorithm(dataset, model, config.algorithm)
+    alg = Trainer(dataset, model, config.algorithm)
     alg.run()
 
 if __name__ == "__main__":
