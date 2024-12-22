@@ -1,8 +1,6 @@
 # canvas
 
-A simple, flexible, and modular pytorch template for your deep learning projects. The main idea behind this template is to model all machine learning tasks as interactions between an agent with its environment or external data. All components of the project are built around this core idea.
-
-There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** and see the installation section to download the template:
+A simple, flexible, and modular pytorch template for your deep learning projects. There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** and see the installation section to download the template:
 
 - Supervised Learning (SL)
 - Reinforcement Learning (RL)
@@ -12,9 +10,8 @@ There are multiple templates available for different kinds of machine learning t
 -  [Installation](#installation)
     - [Requirements](#requirements)
 -  [Details](#details)
-    -  [Project Architecture](#project-architecture)
     -  [Folder Structure](#folder-structure)
-    -  [Components](#components)
+    -  [Project Architecture](#project-architecture)
  -  [TODO](#todo)
  -  [Contributing](#contributing)
  -  [License](#license)
@@ -83,7 +80,7 @@ python main.py
 
 ## Project Architecture
 
-This architecture is inspired from the agent-environment interface in reinforcement learning. The template extends this concept to support all kinds of machine learning tasks.
+The main idea behind this template is to model all machine learning tasks as interactions between an agent/model with its environment or external data. All components of the template are built around this core idea. This architecture is inspired from the agent-environment interface in reinforcement learning.
 
 <div align="center">
 
