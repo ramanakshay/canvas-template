@@ -66,14 +66,14 @@ This architecture is inspired from the agent-environment interface in reinforcem
 ## Folder Structure
 ```
 ├──  model              - this folder contains all code (models, networks) of the agent
+│   ├── weights
 │   ├── classifier.py
 │   ├── network.py
 │   └── layers.py
 │
-│
 ├── data               - this folder contains code relevant to the data
+│   ├── datasets
 │   └── data_loader.py
-│
 │
 ├── algorithm             - this folder contains different algorithms of your project
 │   ├── train.py
