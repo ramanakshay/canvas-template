@@ -1,0 +1,16 @@
+model:
+    input_dim: 784
+    hidden_dim: 200
+    output_dim: 10
+    from_pretrained: False
+    weights_path: /Users/akshay/canvas/src/model/weights/
+    device: auto
+
+data:
+    path: /Users/akshay/canvas/src/data/datasets/
+
+algorithm:
+    batch_size: 64
+    learning_rate: 1e-3
+    weight_decay: 1e-6
+    epochs: 5

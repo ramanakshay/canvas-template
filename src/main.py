@@ -11,12 +11,12 @@ from omegaconf import DictConfig, OmegaConf
 def main(config : DictConfig) -> None:
     ## DATASET ##
     dataset = {
-        "train": datasets.FashionMNIST(
+        "train": datasets.MNIST(
             root=config.data.path,
             train=True,
             download=True,
             transform=ToTensor()),
-        "test": datasets.FashionMNIST(
+        "test": datasets.MNIST(
             root=config.data.path,
             train=False,
             download=True,
@@ -24,7 +24,7 @@ def main(config : DictConfig) -> None:
     }
 
     ## MODEL ##
-    model = Classifier(config.agent)
+    model = Classifier(config.model)
 
     ## ALGORITHM ##
     alg = Trainer(dataset, model, config.algorithm)
