@@ -1,6 +1,6 @@
 # canvas
 
-A simple, flexible, and well-designed pytorch template for your deep learning projects. The main idea behind this template is to model all machine learning tasks as interactions between an agent with its environment or external data. All components of the project are built around this core idea.
+A simple, flexible, and modular pytorch template for your deep learning projects. The main idea behind this template is to model all machine learning tasks as interactions between an agent with its environment or external data. All components of the project are built around this core idea.
 
 There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** and see the installation section to download the template:
 
@@ -35,7 +35,7 @@ git add --all
 git commit -m “initial canvas commit”
 ```
 
-3. Install dependencies from requirements file. Make sure to create a virtual environment before running this command.
+3. Install dependencies from requirements file. Make sure to create a virtual/conda environment before running this command.
 ```
 pip install -r requirements.txt
 ```
@@ -51,17 +51,6 @@ python main.py
 
 
 # Details
-
-## Project Architecture
-
-This architecture is inspired from the agent-environment interface in reinforcement learning. The template extends this concept to support all kinds of machine learning tasks.
-
-<div align="center">
-
-<img align="center" src="assets/images/architecture.svg">
-
-</div>
-
 
 ## Folder Structure
 ```
@@ -91,6 +80,16 @@ This architecture is inspired from the agent-environment interface in reinforcem
 └── main.py           - entry point of the project
 
 ```
+
+## Project Architecture
+
+This architecture is inspired from the agent-environment interface in reinforcement learning. The template extends this concept to support all kinds of machine learning tasks.
+
+<div align="center">
+
+<img align="center" src="assets/images/architecture.svg">
+
+</div>
 
 # TODO
 
