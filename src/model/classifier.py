@@ -5,7 +5,6 @@ from .network import MLP
 
 class Classifier(object):
     def __init__(self, config):
-        super().__init__()
         self.config = config
         self.device = (
             self.config.device if self.config.device != "auto"
