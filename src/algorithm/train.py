@@ -14,7 +14,7 @@ class Trainer(object):
         self.test_dataloader = DataLoader(self.dataset["test"], batch_size=self.batch_size)
 
         self.loss_function = nn.CrossEntropyLoss()
-        self.optimizer = optim.Adam(self.model.parameters(),
+        self.optimizer = optim.Adam(self.model.network.parameters(),
                                     lr=self.config.learning_rate,
                                     weight_decay=self.config.weight_decay)
 

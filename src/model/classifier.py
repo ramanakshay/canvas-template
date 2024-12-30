@@ -3,7 +3,7 @@ from torch import nn
 
 from .network import MLP
 
-class Classifier(nn.Module):
+class Classifier(object):
     def __init__(self, config):
         super().__init__()
         self.config = config
@@ -33,7 +33,7 @@ class Classifier(nn.Module):
     def save_weights(self):
         torch.save(self.network.state_dict(), f'{self.config.weights_path}model.pth')
 
-    def forward(self, image):
+    def predict(self, image):
         with torch.set_grad_enabled(self.grad_enabled):
             image = image.to(self.device)
             pred = self.network(image)
