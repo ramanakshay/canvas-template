@@ -18,6 +18,7 @@ class Trainer(object):
         self.optimizer = optim.Adam(self.model.network.parameters(),
                                     lr=self.config.learning_rate,
                                     weight_decay=self.config.weight_decay)
+        self.scheduler = None
 
     def train(self):
         size = len(self.dataset["train"])
@@ -32,9 +33,8 @@ class Trainer(object):
             loss.backward()
             self.optimizer.step()
             pbar.set_postfix(loss=loss.item())
-
         pbar.close()
-
+        if self.scheduler is not None: self.scheduler.step()
 
     def test(self):
         size = len(self.dataset['test'])
@@ -62,6 +62,5 @@ class Trainer(object):
             print(f"Epoch {epoch+1}\n-------------------------------")
             self.train()
             self.test()
-        print("Done!")
         self.model.save_weights()
 

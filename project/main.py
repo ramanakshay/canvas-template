@@ -22,13 +22,17 @@ def main(config : DictConfig) -> None:
             download=True,
             transform=ToTensor())
     }
+    print('Dataset Loaded.')
 
     ## MODEL ##
     model = Classifier(config.model)
+    print('Model Created.')
 
     ## ALGORITHM ##
+    print('Running Algorithm.')
     alg = Trainer(dataset, model, config.algorithm)
     alg.run()
+    print('Done!')
 
 if __name__ == "__main__":
     main()
