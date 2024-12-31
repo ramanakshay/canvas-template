@@ -164,8 +164,11 @@ cython_debug/
 # DS Store
 .DS_Store
 
-# Outputs directory
-outputs/
+# Hydra Outputs
+project/outputs/
 
-# Datasets directors
-datasets/
+# Model Weights
+project/model/weights/
+
+# Dataset directory
+project/data/datasets/
