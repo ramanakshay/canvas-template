@@ -47,10 +47,8 @@ class Trainer(object):
             pred = self.model.predict(X)
             loss = self.loss_function(pred, y)
             correct = (pred.argmax(1) == y).clone().detach().sum()
-
             test_loss += loss.item()
             test_correct += correct.item()
-
         test_loss /= self.batch_size
         test_correct /= size
         pbar.close()
