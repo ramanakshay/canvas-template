@@ -1,6 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from torch import nn, optim
+from tqdm import tqdm
 
 
 class Trainer(object):
@@ -21,25 +22,29 @@ class Trainer(object):
     def train(self):
         size = len(self.dataset["train"])
         self.model.enable_grad(True)
-        for batch, (X, y) in enumerate(self.train_dataloader):
+        pbar = tqdm(self.train_dataloader)
+        pbar.set_description('Train')
+        for batch, (X, y) in enumerate(pbar):
             self.optimizer.zero_grad()
             y = y.to(self.model.device)
-            pred = self.model(X)
+            pred = self.model.predict(X)
             loss = self.loss_function(pred, y)
             loss.backward()
             self.optimizer.step()
+            pbar.set_postfix(loss=loss.item())
 
-            if batch % 100 == 0:
-                train_loss, current = loss.item(), (batch + 1) * len(X)
-                print(f"loss: {train_loss:>7f}  [{current:>5d}/{size:>5d}]")
+        pbar.close()
+
 
     def test(self):
         size = len(self.dataset['test'])
         self.model.enable_grad(False)
+        pbar = tqdm(self.test_dataloader)
+        pbar.set_description('Test')
         test_loss, test_correct = 0.0, 0.0
-        for X, y in self.test_dataloader:
+        for X, y in pbar:
             y = y.to(self.model.device)
-            pred = self.model(X)
+            pred = self.model.predict(X)
             loss = self.loss_function(pred, y)
             correct = (pred.argmax(1) == y).clone().detach().sum()
 
@@ -48,8 +53,8 @@ class Trainer(object):
 
         test_loss /= self.batch_size
         test_correct /= size
-
-        print(f"Test Error: \n Accuracy: {(100.0*test_correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
+        pbar.close()
+        print(f"Accuracy: {(100.0*test_correct):>0.1f}%, Loss: {test_loss:>8f} \n")
 
     def run(self):
         epochs = self.config.epochs
@@ -58,4 +63,5 @@ class Trainer(object):
             self.train()
             self.test()
         print("Done!")
+        self.model.save_weights()
 
