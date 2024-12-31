@@ -3,11 +3,11 @@ model:
     hidden_dim: 200
     output_dim: 10
     from_pretrained: False
-    weights_path: /Users/akshay/canvas/src/model/weights/
+    weights_path: /Users/akshay/canvas/project/model/weights/
     device: auto
 
 data:
-    path: /Users/akshay/canvas/src/data/datasets/
+    path: /Users/akshay/canvas/project/data/datasets/
 
 algorithm:
     batch_size: 64
