@@ -101,7 +101,3 @@ Any kind of enhancement or contribution is welcomed.
 
 This project is licensed under the MIT License. See LICENSE for more details.
 
-# References
-
-1. Official PyTorch Tutorial -  https://pytorch.org/tutorials/beginner/basics/intro.html
-
