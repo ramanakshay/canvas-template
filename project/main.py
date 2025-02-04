@@ -1,28 +1,15 @@
 from algorithm.train import Trainer
 from model.classifier import Classifier
-
-from torchvision import datasets
-from torchvision.transforms import ToTensor
+from data.data import load_data
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
-    ## DATASET ##
-    dataset = {
-        "train": datasets.FashionMNIST(
-            root=config.data.path,
-            train=True,
-            download=True,
-            transform=ToTensor()),
-        "test": datasets.FashionMNIST(
-            root=config.data.path,
-            train=False,
-            download=True,
-            transform=ToTensor())
-    }
-    print('Dataset Loaded.')
+    ## DATA ##
+    dataloaders = load_data(config.data)
+    print('Data Loaded.')
 
     ## MODEL ##
     model = Classifier(config.model)
@@ -30,7 +17,7 @@ def main(config : DictConfig) -> None:
 
     ## ALGORITHM ##
     print('Running Algorithm.')
-    alg = Trainer(dataset, model, config.algorithm)
+    alg = Trainer(dataloaders, model, config.algorithm)
     alg.run()
     print('Done!')
 
