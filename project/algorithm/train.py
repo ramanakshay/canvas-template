@@ -4,9 +4,10 @@ from tqdm import tqdm
 
 
 class Trainer(object):
-    def __init__(self, dataloaders, model, config):
+    def __init__(self, data, model, config):
         self.model = model
-        self.dataloaders = dataloaders
+        self.data = data
+        self.dataloaders = data.get_dataloaders()
         self.config = config
 
         self.loss_function = nn.CrossEntropyLoss()

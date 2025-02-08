@@ -1,6 +1,6 @@
 from algorithm.train import Trainer
 from model.classifier import Classifier
-from data.data import load_data
+from data.data import FashionMNISTData
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -8,7 +8,7 @@ from omegaconf import DictConfig, OmegaConf
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
     ## DATA ##
-    dataloaders = load_data(config.data)
+    data = FashionMNISTData(config.data)
     print('Data Loaded.')
 
     ## MODEL ##
@@ -17,7 +17,7 @@ def main(config : DictConfig) -> None:
 
     ## ALGORITHM ##
     print('Running Algorithm.')
-    alg = Trainer(dataloaders, model, config.algorithm)
+    alg = Trainer(data, model, config.algorithm)
     alg.run()
     print('Done!')
 
