@@ -4,6 +4,7 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 - Supervised Learning (SL)
 - Reinforcement Learning (RL)
+- Self-Supervised Learning (SSL)
 
 # Table Of Contents
 
