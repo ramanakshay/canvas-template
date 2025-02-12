@@ -1,7 +1,6 @@
 import torch
 from torch import nn
-
-from .network import MLP
+from model.network import MLP
 
 class Classifier(object):
     def __init__(self, config):

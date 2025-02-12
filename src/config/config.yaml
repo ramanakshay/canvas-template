@@ -1,5 +1,5 @@
 data:
-    path: /Users/akshay/canvas/project/data/datasets/
+    path: /Users/akshay/canvas/src/data/dataset/
     batch_size: 64
 
 model:
@@ -8,7 +8,7 @@ model:
     hidden_dim: 200
     output_dim: 10
     from_pretrained: False
-    weights_path: /Users/akshay/canvas/project/model/weights/
+    weights_path: /Users/akshay/canvas/src/model/weights/
 
 algorithm:
     learning_rate: 1e-3
