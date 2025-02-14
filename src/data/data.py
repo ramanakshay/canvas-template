@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader
 
 class FashionMNISTData(object):
     def __init__(self, config):
+        self.config = config.data
         train_dataset = datasets.FashionMNIST(
             root=config.path,
             train=True,
@@ -16,7 +17,7 @@ class FashionMNISTData(object):
             download=True,
             transform=ToTensor())
 
-        batch_size = config.batch_size
+        batch_size = self.config.batch_size
 
         self.train_dataloader = DataLoader(train_dataset, batch_size)
         self.test_dataloader = DataLoader(test_dataset, batch_size)

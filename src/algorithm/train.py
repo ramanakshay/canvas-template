@@ -8,7 +8,7 @@ class Trainer(object):
         self.model = model
         self.data = data
         self.dataloaders = data.get_dataloaders()
-        self.config = config
+        self.config = config.algorithm
 
         self.loss_function = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.network.parameters(),

@@ -8,16 +8,16 @@ from omegaconf import DictConfig, OmegaConf
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
     ## DATA ##
-    data = FashionMNISTData(config.data)
+    data = FashionMNISTData(config)
     print('Data Loaded.')
 
     ## MODEL ##
-    model = Classifier(config.model)
+    model = Classifier(config)
     print('Model Created.')
 
     ## ALGORITHM ##
     print('Running Algorithm.')
-    alg = Trainer(data, model, config.algorithm)
+    alg = Trainer(data, model, config)
     alg.run()
     print('Done!')
 

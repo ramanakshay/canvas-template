@@ -1,9 +1,11 @@
+settings:
+    device: auto
+
 data:
     path: /Users/akshay/canvas/src/data/dataset/
     batch_size: 64
 
 model:
-    device: auto
     input_dim: 784
     hidden_dim: 200
     output_dim: 10

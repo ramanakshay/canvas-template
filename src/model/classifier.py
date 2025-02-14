@@ -4,9 +4,9 @@ from model.network import MLP
 
 class Classifier(object):
     def __init__(self, config):
-        self.config = config
+        self.config = config.model
         self.device = (
-            self.config.device if self.config.device != "auto"
+            self.config.settings.device if self.config.settings.device != "auto"
             else "cuda" if torch.cuda.is_available()
             else "mps" if torch.backends.mps.is_available()
             else "cpu"
