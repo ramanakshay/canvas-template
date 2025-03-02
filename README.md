@@ -19,12 +19,12 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 git clone https://github.com/ramanakshay/canvas --depth 1 --branch sl
 ```
 
-3. Install dependencies from requirements file. Make sure to create a virtual/[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) environment before running this command.
+2. Install dependencies from requirements file. Make sure to create a virtual/[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) environment before running this command.
 ```
 pip install -r requirements.txt
 ```
 
-4. Test the code.
+3. Run the code.
 ```
 # navigate to src folder
 cd src
@@ -33,7 +33,7 @@ cd src
 python main.py
 ```
 
-**Requirements**
+**Main Requirements**
 - [pytorch](https://pytorch.org/) (An open source deep learning platform)
 - [hydra](https://hydra.cc/) (A framework for configuring complex applications)
 
