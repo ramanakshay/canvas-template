@@ -1,4 +1,4 @@
-# canvas
+# Canvas ☯︎
 
 A simple, flexible, and modular pytorch template for your deep learning projects. There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** from above and see the installation section to download the template:
 
