@@ -6,49 +6,37 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 - Reinforcement Learning (RL)
 - Self-Supervised Learning (SSL)
 
-# Table Of Contents
+<div align="center">
 
--  [Installation](#installation)
-    - [Requirements](#requirements)
--  [Details](#details)
-    -  [Folder Structure](#folder-structure)
-    -  [Project Architecture](#project-architecture)
- -  [TODO](#todo)
- -  [Contributing](#contributing)
- -  [License](#license)
+<img align="center" src="assets/images/architecture.svg">
 
-# Installation
+</div>
 
-1.  Clone the repository and go to the project folder.
+## Installation
+
+1.  Clone the repository.
 ```
 git clone https://github.com/ramanakshay/canvas --depth 1 --branch sl
-cd canvas
 ```
 
-2. Reset git history.
-```
-rm -rf .git
-git init
-git add --all
-git commit -m “initial canvas commit”
-```
-
-3. Install dependencies from requirements file. Make sure to create a virtual/conda environment before running this command.
+3. Install dependencies from requirements file. Make sure to create a virtual/[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) environment before running this command.
 ```
 pip install -r requirements.txt
 ```
 
 4. Test the code.
 ```
+# navigate to src folder
+cd src
+
+# run the main file
 python main.py
 ```
 
-## Requirements
+**Requirements**
 - [pytorch](https://pytorch.org/) (An open source deep learning platform)
 - [hydra](https://hydra.cc/) (A framework for configuring complex applications)
 
-
-# Details
 
 ## Folder Structure
 ```
@@ -71,34 +59,13 @@ python main.py
 │    └── config.yaml  - YAML config file for project
 │
 │
-├──  utils            - this (optional) folder contains utilities of your project
-│    └── utils.py
-│
-│
 └── main.py           - entry point of the project
 
 ```
 
-## Project Architecture
 
-The main idea behind this template is to model all machine learning tasks as interactions between an agent/model with its environment or external data. All components of the template are built around this core idea. This architecture is inspired from the agent-environment interface in reinforcement learning.
+## TODOs
 
-<div align="center">
-
-<img align="center" src="assets/images/architecture.svg">
-
-</div>
-
-# TODO
-
-- [ ] Support for loggers
-
-
-# Contributing
 Any kind of enhancement or contribution is welcomed.
 
-
-# License
-
-This project is licensed under the MIT License. See LICENSE for more details.
-
+- [ ] Support for loggers
