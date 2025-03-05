@@ -2,7 +2,7 @@ from torchvision import datasets
 from torchvision.transforms import ToTensor
 from torch.utils.data import DataLoader
 
-class FashionMNISTData(object):
+class FashionMNISTData:
     def __init__(self, config):
         self.config = config.data
         train_dataset = datasets.FashionMNIST(

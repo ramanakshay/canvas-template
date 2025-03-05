@@ -3,7 +3,7 @@ from torch import nn, optim
 from tqdm import tqdm
 
 
-class Trainer(object):
+class Trainer:
     def __init__(self, data, model, config):
         self.model = model
         self.data = data

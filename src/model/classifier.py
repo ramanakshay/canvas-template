@@ -2,15 +2,10 @@ import torch
 from torch import nn
 from model.network import MLP
 
-class Classifier(object):
+class Classifier:
     def __init__(self, config):
         self.config = config.model
-        self.device = (
-            self.config.settings.device if self.config.settings.device != "auto"
-            else "cuda" if torch.cuda.is_available()
-            else "mps" if torch.backends.mps.is_available()
-            else "cpu"
-        )
+        self.device = config.system.device
 
         self.network = MLP(self.config.input_dim, self.config.hidden_dim,
                            self.config.output_dim).to(self.device)
