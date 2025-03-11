@@ -40,26 +40,25 @@ python main.py
 
 ## Folder Structure
 ```
-├──  model              - this folder contains all code (networks, layers) of the model
+├──  model               - this folder contains all code (networks, layers) of the model
 │   ├── weights
-│   ├── classifier.py
+│   ├── model.py
 │   ├── network.py
 │   └── layers.py
 │
-├── data               - this folder contains code relevant to the data and datasets
+├── data                 - this folder contains code relevant to the data and datasets
 │   ├── datasets
-│   └── data_loader.py
+|   ├── data.py
+│   └── prepare.py
 │
-├── algorithm             - this folder contains different algorithms of your project
+├── algorithm            - this folder contains different algorithms of your project
 │   ├── train.py
 │   └── test.py
 │
+├── config
+│   └── config.yaml      - YAML config file for project
 │
-├──  config
-│    └── config.yaml  - YAML config file for project
-│
-│
-└── main.py           - entry point of the project
+└── main.py              - entry point of the project
 
 ```
 
@@ -69,3 +68,4 @@ python main.py
 Any kind of enhancement or contribution is welcomed.
 
 - [ ] Support for loggers
+- [ ] Distributed training sample code
