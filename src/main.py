@@ -6,9 +6,13 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 
 def setup():
-    # initial setup (can return process state (for ddp), amp context, etc.)
+    # (Optional) Initial setup (can return process state (for ddp), amp context, etc.)
     # random seed
     torch.manual_seed(42)
+
+def cleanup():
+    # (Optional) Cleanup code (ex. destroy_process_group)
+    pass
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
@@ -28,6 +32,9 @@ def main(config : DictConfig) -> None:
     alg = Trainer(data, model, config)
     alg.run()
     print('Done!')
+
+    ## CLEANUP ##
+    cleanup()
 
 if __name__ == "__main__":
     main()
