@@ -40,7 +40,7 @@ python main.py
 
 ## Folder Structure
 ```
-├──  model               - this folder contains all code (networks, layers) of the model
+├── model                - this folder contains all code (networks, layers) of the model
 │   ├── weights
 │   ├── model.py
 │   ├── network.py
