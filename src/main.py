@@ -16,6 +16,10 @@ def setup(config):
 # def cleanup():
 #     pass
 
+def cleanup():
+    # (Optional) Cleanup code (ex. destroy_process_group)
+    pass
+
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
     ## SETUP ##
@@ -33,6 +37,9 @@ def main(config : DictConfig) -> None:
     alg = Trainer(data, model, config, device)
     alg.run()
     print('Done!')
+
+    ## CLEANUP ##
+    cleanup()
 
 if __name__ == "__main__":
     main()
