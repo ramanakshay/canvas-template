@@ -4,25 +4,25 @@ from tqdm import tqdm
 
 
 class Trainer:
-    def __init__(self, data, model, config):
+    def __init__(self, data, model, config, device):
         self.model = model
         self.data = data
         self.dataloaders = data.get_dataloaders()
         self.config = config.algorithm
+        self.device = device
 
         self.loss_function = nn.CrossEntropyLoss()
         self.optimizer = optim.Adam(self.model.network.parameters(),
                                     lr=self.config.learning_rate,
                                     weight_decay=self.config.weight_decay)
-        self.scheduler = None
 
-    def run_train_epoch(self):
-        self.model.enable_grad(True)
+    def train(self):
+        self.model.train()
         pbar = tqdm(self.dataloaders['train'])
         pbar.set_description('Train')
         for i, (X, y) in enumerate(pbar):
             self.optimizer.zero_grad()
-            y = y.to(self.model.device)
+            X, y = X.to(self.device), y.to(self.device)
             pred = self.model.predict(X)
             loss = self.loss_function(pred, y)
             loss.backward()
@@ -30,17 +30,16 @@ class Trainer:
             if i % 40 == 1: # update every 40 steps
                 pbar.set_postfix(loss=loss.item())
         pbar.close()
-        if self.scheduler is not None: self.scheduler.step()
 
-    def run_test_epoch(self):
+    def test(self):
         size = len(self.dataloaders['test'].dataset)
         batch_size = self.dataloaders['test'].batch_size
-        self.model.enable_grad(False)
+        self.model.eval()
         pbar = tqdm(self.dataloaders['test'])
         pbar.set_description('Test')
         test_loss, test_correct = 0.0, 0.0
         for X, y in pbar:
-            y = y.to(self.model.device)
+            X, y = X.to(self.device), y.to(self.device)
             pred = self.model.predict(X)
             loss = self.loss_function(pred, y)
             correct = (pred.argmax(1) == y).clone().detach().sum()
@@ -55,7 +54,6 @@ class Trainer:
         epochs = self.config.epochs
         for epoch in range(epochs):
             print(f"Epoch {epoch+1}\n-------------------------------")
-            self.run_train_epoch()
-            self.run_test_epoch()
-        self.model.save_weights()
+            self.train()
+            self.test()
 

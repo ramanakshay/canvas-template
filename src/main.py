@@ -1,31 +1,36 @@
 from algorithm.train import Trainer
-from model.classifier import Classifier
-from data.data import FashionMNISTData
-
+from model import Classifier
+from data import FashionMNISTData
+import torch
 import hydra
 from omegaconf import DictConfig, OmegaConf
 
-def setup():
-    # initial setup (can return process state (for ddp), amp context, etc.)
-    # random seed
+def setup(config):
     torch.manual_seed(42)
+    device = config.system.device
+    if device == 'auto':
+        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    return device
+
+
+# def cleanup():
+#     pass
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config : DictConfig) -> None:
     ## SETUP ##
-    setup()
-    
+    device = setup(config)
     ## DATA ##
     data = FashionMNISTData(config)
     print('Data Loaded.')
 
     ## MODEL ##
-    model = Classifier(config)
+    model = Classifier(config, device)
     print('Model Created.')
 
     ## ALGORITHM ##
     print('Running Algorithm.')
-    alg = Trainer(data, model, config)
+    alg = Trainer(data, model, config, device)
     alg.run()
     print('Done!')
 

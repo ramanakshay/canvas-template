@@ -2,7 +2,7 @@ system:
     device: auto
 
 data:
-    path: /Users/akshay/canvas/src/data/dataset/
+    dataset_path: /Users/akshay/canvas/src/data/dataset/
     batch_size: 64
 
 model:

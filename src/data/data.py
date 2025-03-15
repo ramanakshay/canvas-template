@@ -6,13 +6,13 @@ class FashionMNISTData:
     def __init__(self, config):
         self.config = config.data
         train_dataset = datasets.FashionMNIST(
-            root=config.path,
+            root=self.config.dataset_path,
             train=True,
             download=True,
             transform=ToTensor())
 
         test_dataset = datasets.FashionMNIST(
-            root=config.path,
+            root=self.config.dataset_path,
             train=False,
             download=True,
             transform=ToTensor())
