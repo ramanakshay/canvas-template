@@ -1,0 +1,23 @@
+system:
+    device: cpu
+
+env:
+    name: Acrobot-v1
+    max_ep_steps: 500
+    obs_dim: 6
+    act_dim: 3
+
+agent:
+    device: auto
+    obs_dim: ${env.obs_dim}
+    act_dim: ${env.act_dim}
+    hidden_dim: 64
+    from_pretrained: True
+    weights_path: /Users/akshay/canvas/src/agent/weights/
+
+algorithm:
+    total_timesteps: 250000
+    timesteps_per_batch: 2500
+    learning_rate: 1e-3
+    lam: 0.9
+    gamma: 0.99

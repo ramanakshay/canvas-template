@@ -1,0 +1,26 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.module]
+name = "app"
+
+[project]
+name = "canvas"
+version = "1.0.0"
+description = "A logical, reasonably standardized but flexible project structure for doing and sharing data science work."
+authors = [
+  { name = "Akshay Raman", email = "ar8692@nyu.edu" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "cookiecutter",
+]
+
+[project.scripts]
+canvas = "app.__main__:main"
+
+[project.urls]
+"Source Code" = "https://github.com/ramanakshay/canvas/"

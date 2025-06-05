@@ -163,6 +163,3 @@ cython_debug/
 
 # DS Store
 .DS_Store
-
-# Hydra Outputs
-src/outputs/
