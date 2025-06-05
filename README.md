@@ -14,23 +14,15 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 ## Installation
 
-1.  Clone the repository.
 ```
-git clone https://github.com/ramanakshay/canvas --depth 1 --branch sl
-```
+# Clone Reposity
+git clone https://github.com/ramanakshay/canvas
 
-2. Install dependencies from requirements file. Make sure to create a virtual/[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) environment before running this command.
-```
-pip install -r requirements.txt
-```
+# Install Template Builder
+pip install .
 
-3. Run the code.
-```
-# navigate to src folder
-cd src
-
-# run the main file
-python main.py
+# Run Commmand
+canvas create sl
 ```
 
 **Main Requirements**
