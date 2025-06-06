@@ -8,7 +8,7 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 <div align="center">
 
-<img align="center" src="assets/architecture.svg">
+<img align="center" src="docs/assets/architecture.svg">
 
 </div>
 
