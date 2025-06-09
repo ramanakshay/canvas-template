@@ -1,8 +1,8 @@
 import torch
-from torch import nn
+from torch import nn, optim
 from model.network import MLP
 
-class Classifier:
+class ClassifierModel:
     def __init__(self, config, device):
         self.config = config.model
         self.device = device
@@ -10,12 +10,10 @@ class Classifier:
         self.network = MLP(self.config.input_dim, self.config.hidden_dim,
                            self.config.output_dim).to(self.device)
 
-        if self.config.from_pretrained:
-            self.load_weights()
-
-
-    def __repr__(self):
-        return str(self.network)
+        self.loss = nn.CrossEntropyLoss()
+        self.optimizer = optim.Adam(self.network.parameters(),
+                                    lr=self.config.learning_rate,
+                                    weight_decay=self.config.weight_decay)
 
     def train(self):
         self.network.train()
@@ -26,4 +24,11 @@ class Classifier:
     def predict(self, image):
         pred = self.network(image)
         return pred
+
+    def update(self, pred, label):
+        loss = self.loss(pred, label)
+        loss.backward()
+        self.optimizer.step()
+        self.optimizer.zero_grad()
+        return loss
 

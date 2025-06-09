@@ -1,5 +1,5 @@
-from algorithm.train import Trainer
-from model import Classifier
+from algorithm import SLTrainer
+from model import ClassifierModel
 from data import FashionMNISTData
 import torch
 import hydra
@@ -23,12 +23,12 @@ def main(config : DictConfig) -> None:
     print('Data Loaded.')
 
     ## MODEL ##
-    model = Classifier(config, device)
+    model = ClassifierModel(config, device)
     print('Model Created.')
 
     ## ALGORITHM ##
     print('Running Algorithm.')
-    alg = Trainer(data, model, config, device)
+    alg = SLTrainer(data, model, config, device)
     alg.run()
     print('Done!')
 

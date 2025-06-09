@@ -1,3 +1,3 @@
-__all__ = ['Classifier']
+__all__ = ['ClassifierModel']
 
-from model.model import Classifier
+from model.model import ClassifierModel
