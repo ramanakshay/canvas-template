@@ -9,9 +9,7 @@ name = "canvas"
 name = "canvas-template"
 version = "0.1.0"
 description = "A flexible and modular deep learning project template."
-authors = [
-  { name = "Akshay Raman", email = "ar8692@nyu.edu" },
-]
+authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
 license = { file = "LICENSE" }
 readme = "README.md"
 classifiers = [
@@ -20,10 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 requires-python = ">=3.9"
-dependencies = [
-  "cookiecutter",
-  "click"
-]
+dependencies = ["cookiecutter", "click"]
 
 [project.scripts]
 canvas = "canvas.__main__:main"
