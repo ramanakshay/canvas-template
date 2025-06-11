@@ -17,5 +17,5 @@ class Batch(object):
         self.tgt = self.tgt.to(device)
         self.src_mask = self.src_mask.to(device)
         self.tgt_mask = self.tgt_mask.to(device)
-        self.tgt_y - self.tgt_y.to(device)
+        self.tgt_y = self.tgt_y.to(device)
         self.ntokens = self.ntokens.to(device)

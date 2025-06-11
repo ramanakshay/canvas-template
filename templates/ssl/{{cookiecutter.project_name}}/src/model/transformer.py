@@ -1,7 +1,7 @@
 import torch
 import math
 from torch import nn
-from torch.nn.functional import log_softmax, pad
+from torch.nn.functional import log_softmax
 
 
 def subsequent_mask(size):
