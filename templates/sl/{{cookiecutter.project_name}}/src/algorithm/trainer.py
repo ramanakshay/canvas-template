@@ -17,7 +17,8 @@ class SLTrainer:
         for i, (X, y) in enumerate(pbar):
             X, y = X.to(self.device), y.to(self.device)
             pred = self.model.predict(X)
-            loss = self.model.update(pred, y)
+            loss = self.model.learn(pred, y)
+            self.model.update()
             if i % 40 == 1: # update every 40 steps
                 pbar.set_postfix(loss=loss.item())
         pbar.close()
@@ -31,8 +32,9 @@ class SLTrainer:
         test_loss, test_correct = 0.0, 0.0
         for X, y in pbar:
             X, y = X.to(self.device), y.to(self.device)
-            pred = self.model.predict(X)
-            loss = self.model.loss(pred, y)
+            with torch.no_grad():
+                pred = self.model.predict(X)
+                loss = self.model.learn(pred, y)
             correct = (pred.argmax(1) == y).clone().detach().sum()
             test_loss += loss.item()
             test_correct += correct.item()

@@ -1,6 +1,6 @@
-from algorithm.train import Trainer
-from model.translator import Translator
-from data.data import TranslateData
+from data import TranslateData
+from model import TranslatorModel
+from algorithm import SSLTrainer
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -23,11 +23,11 @@ def main(config: DictConfig) -> None:
 
     ## MODEL ##
     src_vocab, tgt_vocab = len(data.vocab['de']), len(data.vocab['en'])
-    model = Translator(src_vocab, tgt_vocab, config)
+    model = TranslatorModel(src_vocab, tgt_vocab, config)
     print('Model Created.')
 
     ## ALGORITHM ##
-    algorithm = Trainer(data, model, config)
+    algorithm = SSLTrainer(data, model, config)
     algorithm.run()
     print('Done!')
 

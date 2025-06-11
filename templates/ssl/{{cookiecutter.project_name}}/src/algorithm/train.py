@@ -6,18 +6,6 @@ from algorithm.utils import Batch
 from algorithm.loss import SimpleLossCompute, LabelSmoothing
 
 
-def rate(step, model_size, factor, warmup):
-    """
-    we have to default the step to 1 for LambdaLR function
-    to avoid zero raising to negative power.
-    """
-    if step == 0:
-        step = 1
-    return factor * (
-            model_size ** (-0.5) * min(step ** (-0.5), step * warmup ** (-1.5))
-    )
-
-
 class TrainState:
     """Track number of steps, examples, and tokens processed"""
 
@@ -27,25 +15,14 @@ class TrainState:
     tokens: int = 0  # total # of tokens processed
 
 
-class Trainer:
+class SSLTrainer:
     def __init__(self, data, model, config, device):
         self.data = data
         self.model = model
         self.config = config.algorithm
-        self.dataloaders = data.get_dataloaders()
+        self.dataloaders = self.data.get_dataloaders()
         self.device = device
 
-        criterion = LabelSmoothing(len(self.data.vocab['en']), padding_idx=0, smoothing=self.config.smoothing)
-        self.loss = SimpleLossCompute(self.model.transformer.generator, criterion)
-        self.optimizer = torch.optim.Adam(
-            self.model.transformer.parameters(), lr=self.config.lr, betas=(0.9, 0.98), eps=1e-9
-        )
-        self.scheduler = LambdaLR(
-            optimizer=self.optimizer,
-            lr_lambda=lambda step: rate(
-                step, model_size=self.model.transformer.src_embed[0].d_model, factor=1.0, warmup=self.config.warmup
-            ),
-        )
         self.accum_iter = self.config.accum_iter
         self.train_state = TrainState()
 
@@ -61,27 +38,25 @@ class Trainer:
         for i, b in enumerate(self.dataloaders[mode]):
             batch = Batch(b[0], b[1], pad=2)
             batch.to(device)
-            out = self.model.predict(batch.src, batch.tgt, batch.src_mask, batch.tgt_mask)
-            loss, loss_node = self.loss(out, batch.tgt_y, batch.ntokens)
+            pred = self.model.predict(batch.src, batch.tgt, batch.src_mask, batch.tgt_mask)
+            target, norm = batch.tgt_y, batch.ntokens
 
             if mode == 'train':
-                loss_node.backward()
+                loss, loss_node = self.model.learn(pred, target, norm)
                 train_state.step += 1
                 train_state.samples += batch.src.shape[0]
                 train_state.tokens += batch.ntokens
                 if i % self.accum_iter == 0:
-                    self.optimizer.step()
-                    self.optimizer.zero_grad(set_to_none=True)
+                    self.model.update()
                     n_accum += 1
                     train_state.accum_step += 1
-                self.scheduler.step()
 
             total_loss += loss
             total_tokens += batch.ntokens
             tokens += batch.ntokens
 
             if i % 40 == 1 and (mode == "train"):
-                lr = self.optimizer.param_groups[0]["lr"]
+                lr = self.model.optimizer.param_groups[0]["lr"]
                 elapsed = time.time() - start
                 print(
                     ( "Epoch Step: %6d | Accumulation Step: %3d | Loss: %6.2f "

@@ -1,3 +1,3 @@
-__all__ = ['Translator']
+__all__ = ['TranslatorModel']
 
-from .model import Translator
+from model.model import TranslatorModel

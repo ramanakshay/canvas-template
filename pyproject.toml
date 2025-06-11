@@ -6,14 +6,19 @@ build-backend = "flit_core.buildapi"
 name = "canvas"
 
 [project]
-name = "canvas"
-version = "1.0.0"
+name = "canvas-template"
+version = "0.1.0"
 description = "A flexible and modular deep learning project template."
 authors = [
   { name = "Akshay Raman", email = "ar8692@nyu.edu" },
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
 requires-python = ">=3.9"
 dependencies = [
   "cookiecutter",

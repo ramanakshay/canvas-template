@@ -25,10 +25,13 @@ class ClassifierModel:
         pred = self.network(image)
         return pred
 
-    def update(self, pred, label):
+    def learn(self, pred, label):
         loss = self.loss(pred, label)
         loss.backward()
+        return loss
+
+    def update(self, pred, label):
         self.optimizer.step()
         self.optimizer.zero_grad()
-        return loss
+
 
