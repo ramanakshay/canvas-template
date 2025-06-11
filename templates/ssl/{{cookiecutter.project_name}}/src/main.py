@@ -2,8 +2,9 @@ from data import TranslateData
 from model import TranslatorModel
 from algorithm import SSLTrainer
 
+import torch
 import hydra
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig
 
 def setup(config):
     torch.manual_seed(42)
@@ -15,7 +16,7 @@ def setup(config):
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config: DictConfig) -> None:
     ## SETUP ##
-    device = setup()
+    device = setup(config)
 
     ## DATA ##
     data = TranslateData(config)
@@ -23,11 +24,11 @@ def main(config: DictConfig) -> None:
 
     ## MODEL ##
     src_vocab, tgt_vocab = len(data.vocab['de']), len(data.vocab['en'])
-    model = TranslatorModel(src_vocab, tgt_vocab, config)
+    model = TranslatorModel(src_vocab, tgt_vocab, config, device)
     print('Model Created.')
 
     ## ALGORITHM ##
-    algorithm = SSLTrainer(data, model, config)
+    algorithm = SSLTrainer(data, model, config, device)
     algorithm.run()
     print('Done!')
 

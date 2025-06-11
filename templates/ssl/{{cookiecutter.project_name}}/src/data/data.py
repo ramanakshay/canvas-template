@@ -1,6 +1,6 @@
 from torch.utils.data import DataLoader
 from torchnlp.datasets import multi30k_dataset
-from data.tokenizers import load_tokenizers, load_vocab
+from data.tokenizer import load_tokenizers, load_vocab
 from data.preprocessing import Collator
 
 

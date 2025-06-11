@@ -1,5 +1,6 @@
 import torch
 from torch.nn.functional import pad
+from data.tokenizer import tokenize
 
 
 class Collator(object):

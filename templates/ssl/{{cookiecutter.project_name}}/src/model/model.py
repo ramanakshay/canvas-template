@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from model.transformer import Transformer
 from torch.optim.lr_scheduler import LambdaLR
-from algorithm.loss import SimpleLossCompute, LabelSmoothing
+from model.loss import SimpleLossCompute, LabelSmoothing
 
 def rate(step, model_size, factor, warmup):
     """
@@ -68,12 +68,10 @@ class TranslatorModel:
 
     def learn(self, pred, target, norm):
         loss, loss_node = self.loss(pred, target, norm)
-        loss.backward()
+        loss_node.backward()
         return loss, loss_node
 
     def update(self):
         self.optimizer.step()
         self.optimizer.zero_grad(set_to_none=True)
         self.scheduler.step()
-        return loss
-

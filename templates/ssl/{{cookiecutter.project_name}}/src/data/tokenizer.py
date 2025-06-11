@@ -1,5 +1,6 @@
 import spacy
 import os
+import torch
 from os.path import exists
 from torchtext.vocab import build_vocab_from_iterator
 from torchnlp.datasets import multi30k_dataset

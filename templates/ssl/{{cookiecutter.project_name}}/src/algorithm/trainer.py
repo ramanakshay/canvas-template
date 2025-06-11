@@ -1,10 +1,6 @@
 import time
 import torch
-from torch import nn
-from torch.optim.lr_scheduler import LambdaLR
 from algorithm.utils import Batch
-from algorithm.loss import SimpleLossCompute, LabelSmoothing
-
 
 class TrainState:
     """Track number of steps, examples, and tokens processed"""
@@ -37,7 +33,7 @@ class SSLTrainer:
 
         for i, b in enumerate(self.dataloaders[mode]):
             batch = Batch(b[0], b[1], pad=2)
-            batch.to(device)
+            batch.to(self.device)
             pred = self.model.predict(batch.src, batch.tgt, batch.src_mask, batch.tgt_mask)
             target, norm = batch.tgt_y, batch.ntokens
 
@@ -50,6 +46,9 @@ class SSLTrainer:
                     self.model.update()
                     n_accum += 1
                     train_state.accum_step += 1
+            else:
+                with torch.no_grad():
+                    loss, loss_node = self.model.learn(pred, target, norm)
 
             total_loss += loss
             total_tokens += batch.ntokens
