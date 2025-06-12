@@ -1,5 +1,6 @@
 from cookiecutter.main import cookiecutter
 import click
+import os
 
 
 @click.group()
@@ -15,7 +16,7 @@ def info():
 @click.command()
 @click.argument("type", type=click.Choice(["sl", "ssl", "rl"]))
 def create(type):
-    BASE_PATH = "https://github.com/ramanakshay/canvas"
+    BASE_PATH = os.path.dirname(__file__) + "/cookiecutters"
     DIRECTORY_PATH = f"templates/{type}"
     cookiecutter(BASE_PATH, directory=DIRECTORY_PATH)
 

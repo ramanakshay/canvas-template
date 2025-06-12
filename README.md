@@ -10,7 +10,7 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 <div align="center">
 
-<img align="center" src="https://github.com/ramanakshay/canvas/raw/main/docs/assets/architecture.svg">
+<img align="center" src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
 
 </div>
 

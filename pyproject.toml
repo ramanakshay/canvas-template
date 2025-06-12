@@ -8,7 +8,7 @@ name = "canvas"
 [project]
 name = "canvas-template"
 readme = "README.md"
-version = "0.1.1"
+version = "0.1.3"
 description = "A flexible and modular deep learning project template."
 authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
 license = "MIT"
