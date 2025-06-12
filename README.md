@@ -1,6 +1,6 @@
 # Canvas ☯︎
 
-A simple, flexible, and modular pytorch template for your deep learning projects. There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** from above and see the installation section to download the template:
+A simple, flexible, and modular pytorch template for your deep learning projects. There are multiple templates available for different kinds of machine learning tasks:
 
 - Supervised Learning (SL)
 - Reinforcement Learning (RL)
@@ -16,27 +16,24 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 ```
 # Clone Reposity
-git clone https://github.com/ramanakshay/canvas
-
-# Install Template Builder
-pip install .
+pip install canvas-template
 
 # Run Commmand
-canvas create sl
+canvas create {sl,ssl,rl}
 ```
 
-**Main Requirements**
+**Core Requirements**
 - [pytorch](https://pytorch.org/) (An open source deep learning platform)
 - [hydra](https://hydra.cc/) (A framework for configuring complex applications)
 
 
 ## Folder Structure
 ```
-├── model                - this folder contains all code (networks, layers) of the model
+├── model                - this folder contains all code (networks, layers, loss) of the model
 │   ├── weights
 │   ├── model.py
 │   ├── network.py
-│   └── layers.py
+│   └── loss.py
 │
 ├── data                 - this folder contains code relevant to the data and datasets
 │   ├── datasets
@@ -60,4 +57,4 @@ canvas create sl
 Any kind of enhancement or contribution is welcomed.
 
 - [ ] Support for loggers
-- [ ] Distributed training sample code
+- [ ] Distributed training integration

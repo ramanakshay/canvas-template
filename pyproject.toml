@@ -6,12 +6,13 @@ build-backend = "flit_core.buildapi"
 name = "canvas"
 
 [project]
-name = "canvas-template"
+license-file =
+readme = "README.md"name = "canvas-template"
 version = "0.1.0"
 description = "A flexible and modular deep learning project template."
 authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
-license = { file = "LICENSE" }
-readme = "README.md"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
