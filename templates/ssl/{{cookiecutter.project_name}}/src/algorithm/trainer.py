@@ -48,7 +48,7 @@ class SSLTrainer:
                     train_state.accum_step += 1
             else:
                 with torch.no_grad():
-                    loss, loss_node = self.model.learn(pred, target, norm)
+                    loss, loss_node = self.model.loss(pred, target, norm)
 
             total_loss += loss
             total_tokens += batch.ntokens

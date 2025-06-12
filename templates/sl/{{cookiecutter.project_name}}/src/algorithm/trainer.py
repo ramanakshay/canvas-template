@@ -1,5 +1,4 @@
 import torch
-from torch import nn
 from tqdm import tqdm
 
 
@@ -34,7 +33,7 @@ class SLTrainer:
             X, y = X.to(self.device), y.to(self.device)
             with torch.no_grad():
                 pred = self.model.predict(X)
-                loss = self.model.learn(pred, y)
+                loss = self.model.loss(pred, y)
             correct = (pred.argmax(1) == y).clone().detach().sum()
             test_loss += loss.item()
             test_correct += correct.item()
@@ -49,4 +48,3 @@ class SLTrainer:
             print(f"Epoch {epoch+1}\n-------------------------------")
             self.train()
             self.test()
-

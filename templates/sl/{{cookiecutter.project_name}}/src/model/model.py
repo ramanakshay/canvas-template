@@ -1,4 +1,3 @@
-import torch
 from torch import nn, optim
 from model.network import MLP
 
@@ -30,8 +29,6 @@ class ClassifierModel:
         loss.backward()
         return loss
 
-    def update(self, pred, label):
+    def update(self):
         self.optimizer.step()
         self.optimizer.zero_grad()
-
-
