@@ -16,12 +16,12 @@ class Collator(object):
         pad_id = 2
         src_list, tgt_list = [], []
         for s in batch:
-            _src, _tgt = s['de'], s['en']
+            _src, _tgt = s["de"], s["en"]
             processed_src = torch.cat(
                 [
                     bs_id,
                     torch.tensor(
-                        self.vocab['de'](tokenize(_src, self.tokenizer['de'])),
+                        self.vocab["de"](tokenize(_src, self.tokenizer["de"])),
                         dtype=torch.int64,
                         device=self.device,
                     ),
@@ -33,7 +33,7 @@ class Collator(object):
                 [
                     bs_id,
                     torch.tensor(
-                        self.vocab['en'](tokenize(_tgt, self.tokenizer['en'])),
+                        self.vocab["en"](tokenize(_tgt, self.tokenizer["en"])),
                         dtype=torch.int64,
                         device=self.device,
                     ),

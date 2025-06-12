@@ -1,3 +1,3 @@
-__all__ = ['SSLTrainer']
+__all__ = ["SSLTrainer"]
 
 from algorithm.trainer import SSLTrainer

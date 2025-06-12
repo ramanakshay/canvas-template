@@ -1,3 +1,3 @@
-__all__ = ['FashionMNISTData']
+__all__ = ["FashionMNISTData"]
 
 from data.data import FashionMNISTData

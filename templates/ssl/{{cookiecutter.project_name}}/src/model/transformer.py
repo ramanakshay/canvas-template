@@ -7,9 +7,7 @@ from torch.nn.functional import log_softmax
 def subsequent_mask(size):
     # Mask out subsequent positions. Boolean mask
     attn_shape = (size, size)
-    subsequent_mask = torch.triu(torch.ones(attn_shape), diagonal=1).type(
-        torch.uint8
-    )
+    subsequent_mask = torch.triu(torch.ones(attn_shape), diagonal=1).type(torch.uint8)
     return subsequent_mask == 1
 
 
@@ -60,8 +58,17 @@ class Generator(nn.Module):
 
 
 class Transformer(nn.Module):
-    def __init__(self, src_vocab, tgt_vocab, d_model, nhead, num_encoder_layers, num_decoder_layers, dim_feedforward,
-                 dropout):
+    def __init__(
+        self,
+        src_vocab,
+        tgt_vocab,
+        d_model,
+        nhead,
+        num_encoder_layers,
+        num_decoder_layers,
+        dim_feedforward,
+        dropout,
+    ):
         super(Transformer, self).__init__()
         self.transformer = nn.Transformer(
             d_model=d_model,
@@ -70,19 +77,27 @@ class Transformer(nn.Module):
             num_decoder_layers=num_decoder_layers,
             dim_feedforward=dim_feedforward,
             dropout=dropout,
-            batch_first=True)  # first dimension is batch_size
-        self.src_embed = nn.Sequential(Embeddings(d_model, src_vocab),
-                                       PositionalEncoding(d_model, dropout))
-        self.tgt_embed = nn.Sequential(Embeddings(d_model, tgt_vocab),
-                                       PositionalEncoding(d_model, dropout))
+            batch_first=True,
+        )  # first dimension is batch_size
+        self.src_embed = nn.Sequential(
+            Embeddings(d_model, src_vocab), PositionalEncoding(d_model, dropout)
+        )
+        self.tgt_embed = nn.Sequential(
+            Embeddings(d_model, tgt_vocab), PositionalEncoding(d_model, dropout)
+        )
         self.generator = Generator(d_model, tgt_vocab)
 
     def forward(self, src, tgt, src_mask=None, tgt_mask=None):
         "Take in and process masked src and target sequences."
         causal_mask = subsequent_mask(tgt.size(-1))
         src, tgt = self.src_embed(src), self.tgt_embed(tgt)
-        return self.transformer(src=src, tgt=tgt, tgt_mask=causal_mask, src_key_padding_mask=src_mask,
-                                tgt_key_padding_mask=tgt_mask)
+        return self.transformer(
+            src=src,
+            tgt=tgt,
+            tgt_mask=causal_mask,
+            src_key_padding_mask=src_mask,
+            tgt_key_padding_mask=tgt_mask,
+        )
 
     def encode(self, src, src_mask=None):
         src = self.src_embed(src)
@@ -91,5 +106,10 @@ class Transformer(nn.Module):
     def decode(self, mem, tgt, mem_mask=None, tgt_mask=None):
         causal_mask = subsequent_mask(tgt.size(-1))
         tgt = self.tgt_embed(tgt)
-        return self.transformer.decoder(tgt=tgt, memory=mem, tgt_mask=causal_mask, tgt_key_padding_mask=tgt_mask,
-                                        memory_key_padding_mask=mem_mask)
+        return self.transformer.decoder(
+            tgt=tgt,
+            memory=mem,
+            tgt_mask=causal_mask,
+            tgt_key_padding_mask=tgt_mask,
+            memory_key_padding_mask=mem_mask,
+        )

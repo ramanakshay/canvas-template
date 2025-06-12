@@ -10,12 +10,16 @@ class TranslateData:
         self.device = config.system.device
 
         spacy_de, spacy_en = load_tokenizers()
-        self.tokenizer = {'de': spacy_de, 'en': spacy_en}
+        self.tokenizer = {"de": spacy_de, "en": spacy_en}
 
-        vocab_src, vocab_tgt = load_vocab(self.tokenizer, self.config.vocab_path, self.config.dataset_path)
-        self.vocab = {'de': vocab_src, 'en': vocab_tgt}
+        vocab_src, vocab_tgt = load_vocab(
+            self.tokenizer, self.config.vocab_path, self.config.dataset_path
+        )
+        self.vocab = {"de": vocab_src, "en": vocab_tgt}
 
-        collator = Collator(self.tokenizer, self.vocab, self.device, self.config.max_padding)
+        collator = Collator(
+            self.tokenizer, self.vocab, self.device, self.config.max_padding
+        )
 
         train, val, test = multi30k_dataset(
             directory=self.config.dataset_path,
@@ -23,10 +27,10 @@ class TranslateData:
             dev=True,
             test=True,
             urls=[
-                'https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz',
-                'https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz',
-                'https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/mmt16_task1_test.tar.gz'
-            ]
+                "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz",
+                "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz",
+                "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/mmt16_task1_test.tar.gz",
+            ],
         )
 
         self.train_dataloader = DataLoader(
@@ -44,4 +48,4 @@ class TranslateData:
         )
 
     def get_dataloaders(self):
-        return {'train': self.train_dataloader, 'valid': self.val_dataloader}
+        return {"train": self.train_dataloader, "valid": self.val_dataloader}

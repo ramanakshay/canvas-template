@@ -6,12 +6,14 @@ import torch
 import hydra
 from omegaconf import DictConfig
 
+
 def setup(config):
     torch.manual_seed(42)
     device = config.system.device
-    if device == 'auto':
-        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    if device == "auto":
+        device = "cuda" if torch.cuda.is_available() else "cpu"
     return device
+
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config: DictConfig) -> None:
@@ -20,17 +22,18 @@ def main(config: DictConfig) -> None:
 
     ## DATA ##
     data = TranslateData(config)
-    print('Data Loaded.')
+    print("Data Loaded.")
 
     ## MODEL ##
-    src_vocab, tgt_vocab = len(data.vocab['de']), len(data.vocab['en'])
+    src_vocab, tgt_vocab = len(data.vocab["de"]), len(data.vocab["en"])
     model = TranslatorModel(src_vocab, tgt_vocab, config, device)
-    print('Model Created.')
+    print("Model Created.")
 
     ## ALGORITHM ##
     algorithm = SSLTrainer(data, model, config, device)
     algorithm.run()
-    print('Done!')
+    print("Done!")
+
 
 if __name__ == "__main__":
     main()

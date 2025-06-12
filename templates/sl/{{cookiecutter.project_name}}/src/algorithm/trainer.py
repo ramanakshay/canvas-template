@@ -12,13 +12,13 @@ class SLTrainer:
     def train(self):
         self.model.train()
         pbar = tqdm(self.data.train_dataloader)
-        pbar.set_description('Train')
+        pbar.set_description("Train")
         for i, (X, y) in enumerate(pbar):
             X, y = X.to(self.device), y.to(self.device)
             pred = self.model.predict(X)
             loss = self.model.learn(pred, y)
             self.model.update()
-            if i % 40 == 1: # update every 40 steps
+            if i % 40 == 1:  # update every 40 steps
                 pbar.set_postfix(loss=loss.item())
         pbar.close()
 
@@ -27,7 +27,7 @@ class SLTrainer:
         batch_size = self.data.config.batch_size
         self.model.eval()
         pbar = tqdm(self.data.test_dataloader)
-        pbar.set_description('Test')
+        pbar.set_description("Test")
         test_loss, test_correct = 0.0, 0.0
         for X, y in pbar:
             X, y = X.to(self.device), y.to(self.device)
@@ -45,6 +45,6 @@ class SLTrainer:
     def run(self):
         epochs = self.config.epochs
         for epoch in range(epochs):
-            print(f"Epoch {epoch+1}\n-------------------------------")
+            print(f"Epoch {epoch+1}\n------------------------------")
             self.train()
             self.test()

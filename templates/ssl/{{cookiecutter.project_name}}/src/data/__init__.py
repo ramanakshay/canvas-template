@@ -1,3 +1,3 @@
-__all__ = ['TranslateData']
+__all__ = ["TranslateData"]
 
 from data.data import TranslateData

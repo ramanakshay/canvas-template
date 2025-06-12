@@ -2,6 +2,7 @@ import time
 import torch
 from algorithm.utils import Batch
 
+
 class TrainState:
     """Track number of steps, examples, and tokens processed"""
 
@@ -34,10 +35,12 @@ class SSLTrainer:
         for i, b in enumerate(self.dataloaders[mode]):
             batch = Batch(b[0], b[1], pad=2)
             batch.to(self.device)
-            pred = self.model.predict(batch.src, batch.tgt, batch.src_mask, batch.tgt_mask)
+            pred = self.model.predict(
+                batch.src, batch.tgt, batch.src_mask, batch.tgt_mask
+            )
             target, norm = batch.tgt_y, batch.ntokens
 
-            if mode == 'train':
+            if mode == "train":
                 loss, loss_node = self.model.learn(pred, target, norm)
                 train_state.step += 1
                 train_state.samples += batch.src.shape[0]
@@ -58,8 +61,10 @@ class SSLTrainer:
                 lr = self.model.optimizer.param_groups[0]["lr"]
                 elapsed = time.time() - start
                 print(
-                    ( "Epoch Step: %6d | Accumulation Step: %3d | Loss: %6.2f "
-                     + "| Tokens / Sec: %7.1f | Learning Rate: %6.1e" )
+                    (
+                        "Epoch Step: %6d | Accumulation Step: %3d | Loss: %6.2f "
+                        + "| Tokens / Sec: %7.1f | Learning Rate: %6.1e"
+                    )
                     % (i, n_accum, loss / batch.ntokens, tokens / elapsed, lr)
                 )
                 start = time.time()
@@ -72,6 +77,6 @@ class SSLTrainer:
     def run(self):
         for epoch in range(self.config.epochs):
             self.model.train()
-            self.run_epoch(mode='train')
+            self.run_epoch(mode="train")
             self.model.eval()
-            self.run_epoch(mode='valid')
+            self.run_epoch(mode="valid")

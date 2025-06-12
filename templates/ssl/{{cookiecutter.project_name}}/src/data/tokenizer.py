@@ -5,6 +5,7 @@ from os.path import exists
 from torchtext.vocab import build_vocab_from_iterator
 from torchnlp.datasets import multi30k_dataset
 
+
 def load_tokenizers():
     try:
         spacy_de = spacy.load("de_core_news_sm")
@@ -43,22 +44,22 @@ def build_vocabulary(spacy_de, spacy_en, dataset_path):
         dev=True,
         test=True,
         urls=[
-            'https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz',
-            'https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz',
-            'https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/mmt16_task1_test.tar.gz'
-        ]
+            "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/training.tar.gz",
+            "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/validation.tar.gz",
+            "https://raw.githubusercontent.com/neychev/small_DL_repo/master/datasets/Multi30k/mmt16_task1_test.tar.gz",
+        ],
     )
 
     print("Building German Vocabulary ...")
     vocab_src = build_vocab_from_iterator(
-        yield_tokens(train + val + test, tokenize_de, index='de'),
+        yield_tokens(train + val + test, tokenize_de, index="de"),
         min_freq=2,
         specials=["<s>", "</s>", "<blank>", "<unk>"],
     )
 
     print("Building English Vocabulary ...")
     vocab_tgt = build_vocab_from_iterator(
-        yield_tokens(train + val + test, tokenize_en, index='en'),
+        yield_tokens(train + val + test, tokenize_en, index="en"),
         min_freq=2,
         specials=["<s>", "</s>", "<blank>", "<unk>"],
     )
@@ -70,7 +71,7 @@ def build_vocabulary(spacy_de, spacy_en, dataset_path):
 
 
 def load_vocab(tokenizers, vocab_path, dataset_path):
-    spacy_de, spacy_en = tokenizers['de'], tokenizers['en']
+    spacy_de, spacy_en = tokenizers["de"], tokenizers["en"]
     if not exists(vocab_path):
         vocab_src, vocab_tgt = build_vocabulary(spacy_de, spacy_en, dataset_path)
         torch.save((vocab_src, vocab_tgt), vocab_path)
