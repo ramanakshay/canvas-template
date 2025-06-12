@@ -8,7 +8,7 @@ name = "canvas"
 [project]
 name = "canvas-template"
 readme = "README.md"
-version = "0.1.0"
+version = "0.1.1"
 description = "A flexible and modular deep learning project template."
 authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
 license = "MIT"
@@ -24,4 +24,5 @@ dependencies = ["cookiecutter", "click"]
 canvas = "canvas.__main__:main"
 
 [project.urls]
+"Homepage" = "https://github.com/ramanakshay/canvas/"
 "Source Code" = "https://github.com/ramanakshay/canvas/"
