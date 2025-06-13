@@ -9,7 +9,7 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 - Self-Supervised Learning (SSL)
 
 <p align="center">
-<img width="33%" src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
+<img width="35%" src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
 </p>
 
 ## Installation
