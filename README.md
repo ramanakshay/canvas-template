@@ -8,11 +8,9 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 - Reinforcement Learning (RL)
 - Self-Supervised Learning (SSL)
 
-<div align="center">
-
-<img align="center" src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
-
-</div>
+<p align="center">
+<img width="33%" src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
+</p>
 
 ## Installation
 
