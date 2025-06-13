@@ -14,26 +14,38 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 ## Installation
 
+Canvas is a command-line application that requires Python 3.9+. Currently, we recommend installing it from TestPyPi.
+
 ```
-# Clone Reposity
-pip install canvas-template
-
-# Run Commmand
-canvas create {sl,ssl,rl}
+# With pip from TestPyPi
+pip install -i https://test.pypi.org/simple/ canvas-template==0.1.4
 ```
 
-**Core Requirements**
-- [pytorch](https://pytorch.org/) (An open source deep learning platform)
-- [hydra](https://hydra.cc/) (A framework for configuring complex applications)
+## Commands
+
+To start a new project, run the following command:
+
+```
+canvas create {sl/ssl/rl}
+```
+
+The following settings will create a project named *my_project* with the self-supervised learning (ssl) template. 
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/terminal_output.png">
+</p>
 
 
-## Folder Structure
+## Directory Structure
+
+The directory structure of your new project will look something like this (depending on the settings that you choose):
+
 ```
 ├── model                - this folder contains all code (networks, layers, loss) of the model
 │   ├── weights
 │   ├── model.py
 │   ├── network.py
-│   └── loss.py
+│   
 │
 ├── data                 - this folder contains code relevant to the data and datasets
 │   ├── datasets
@@ -41,8 +53,9 @@ canvas create {sl,ssl,rl}
 │   └── prepare.py
 │
 ├── algorithm            - this folder contains different algorithms of your project
-│   ├── train.py
-│   └── test.py
+│   ├── loss.py  
+│   ├── trainer.py
+│   └── evaluator.py
 │
 ├── config
 │   └── config.yaml      - YAML config file for project
@@ -52,7 +65,7 @@ canvas create {sl,ssl,rl}
 ```
 
 
-## TODOs
+## Contributing
 
 Any kind of enhancement or contribution is welcomed.
 
