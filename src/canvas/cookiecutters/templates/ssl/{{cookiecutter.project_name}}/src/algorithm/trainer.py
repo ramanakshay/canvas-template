@@ -1,6 +1,20 @@
 import time
 import torch
 from algorithm.utils import Batch
+from torch.optim.lr_scheduler import LambdaLR
+from algorithm.loss import SimpleLossCompute, LabelSmoothing
+
+
+def rate(step, model_size, factor, warmup):
+    """
+    we have to default the step to 1 for LambdaLR function
+    to avoid zero raising to negative power.
+    """
+    if step == 0:
+        step = 1
+    return factor * (
+        model_size ** (-0.5) * min(step ** (-0.5), step * warmup ** (-1.5))
+    )
 
 
 class TrainState:
@@ -23,6 +37,26 @@ class SSLTrainer:
         self.accum_iter = self.config.accum_iter
         self.train_state = TrainState()
 
+        criterion = LabelSmoothing(
+            self.model.tgt_vocab, padding_idx=0, smoothing=self.config.smoothing
+        )
+        self.loss = SimpleLossCompute(self.model.transformer.generator, criterion)
+        self.optimizer = torch.optim.Adam(
+            self.model.transformer.parameters(),
+            lr=self.config.lr,
+            betas=(0.9, 0.98),
+            eps=1e-9,
+        )
+        self.scheduler = LambdaLR(
+            optimizer=self.optimizer,
+            lr_lambda=lambda step: rate(
+                step,
+                model_size=self.model.config.d_model,
+                factor=1.0,
+                warmup=self.config.warmup,
+            ),
+        )
+
     def run_epoch(self, mode):
         self.model.train()
         start = time.time()
@@ -41,24 +75,27 @@ class SSLTrainer:
             target, norm = batch.tgt_y, batch.ntokens
 
             if mode == "train":
-                loss, loss_node = self.model.learn(pred, target, norm)
+                loss, loss_node = self.loss(pred, target, norm)
+                loss_node.backward()
                 train_state.step += 1
                 train_state.samples += batch.src.shape[0]
                 train_state.tokens += batch.ntokens
                 if i % self.accum_iter == 0:
-                    self.model.update()
+                    self.optimizer.step()
+                    self.optimizer.zero_grad(set_to_none=True)
+                    self.scheduler.step()
                     n_accum += 1
                     train_state.accum_step += 1
             else:
                 with torch.no_grad():
-                    loss, loss_node = self.model.loss(pred, target, norm)
+                    loss, loss_node = self.loss(pred, target, norm)
 
             total_loss += loss
             total_tokens += batch.ntokens
             tokens += batch.ntokens
 
             if i % 40 == 1 and (mode == "train"):
-                lr = self.model.optimizer.param_groups[0]["lr"]
+                lr = self.optimizer.param_groups[0]["lr"]
                 elapsed = time.time() - start
                 print(
                     (

@@ -1,6 +1,8 @@
 # Canvas ☯︎
 
-A simple, flexible, and modular pytorch template for your deep learning projects. There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** from above and see the installation section to download the template:
+> "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
+
+A simple, flexible, and modular pytorch template for your deep learning projects. There are multiple templates available for different kinds of machine learning tasks:
 
 - Supervised Learning (SL)
 - Reinforcement Learning (RL)
@@ -8,48 +10,37 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 
 <div align="center">
 
-<img align="center" src="docs/assets/architecture.svg">
+<img align="center" src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
 
 </div>
 
-
 ## Installation
 
-1.  Clone the repository.
 ```
-git clone https://github.com/ramanakshay/canvas --depth 1 --branch rl
+# Clone Reposity
+pip install canvas-template
+
+# Run Commmand
+canvas create {sl,ssl,rl}
 ```
 
-2. Install dependencies from requirements file. Make sure to create a virtual/[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html) environment before running this command.
-```
-pip install -r requirements.txt
-```
-
-3. Run the code.
-```
-# navigate to src folder
-cd src
-
-# run the main file
-python main.py
-```
-
-**Main Requirements**
+**Core Requirements**
 - [pytorch](https://pytorch.org/) (An open source deep learning platform)
 - [hydra](https://hydra.cc/) (A framework for configuring complex applications)
-- [gymnasium](https://gymnasium.farama.org/index.html) (An API standard for reinforcment learning tasks)
 
 
 ## Folder Structure
 ```
-├── agent                - this folder contains all code (networks, layers) of the agent
+├── model                - this folder contains all code (networks, layers, loss) of the model
 │   ├── weights
 │   ├── model.py
 │   ├── network.py
-│   └── layers.py
+│   └── loss.py
 │
-├── environment          - this folder contains code relevant to the data and datasets
-│   └── env.py
+├── data                 - this folder contains code relevant to the data and datasets
+│   ├── datasets
+|   ├── data.py
+│   └── prepare.py
 │
 ├── algorithm            - this folder contains different algorithms of your project
 │   ├── train.py
@@ -68,4 +59,4 @@ python main.py
 Any kind of enhancement or contribution is welcomed.
 
 - [ ] Support for loggers
-- [ ] Distributed training sample code
+- [ ] Distributed training integration

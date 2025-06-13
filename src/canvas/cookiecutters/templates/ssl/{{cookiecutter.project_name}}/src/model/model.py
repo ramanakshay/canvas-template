@@ -1,25 +1,14 @@
 import torch
 from torch import nn
 from model.transformer import Transformer
-from torch.optim.lr_scheduler import LambdaLR
-from model.loss import SimpleLossCompute, LabelSmoothing
-
-
-def rate(step, model_size, factor, warmup):
-    """
-    we have to default the step to 1 for LambdaLR function
-    to avoid zero raising to negative power.
-    """
-    if step == 0:
-        step = 1
-    return factor * (
-        model_size ** (-0.5) * min(step ** (-0.5), step * warmup ** (-1.5))
-    )
 
 
 class TranslatorModel:
     def __init__(self, src_vocab, tgt_vocab, config, device):
         self.config = config.model
+        self.src_vocab = src_vocab
+        self.tgt_vocab = tgt_vocab
+
         self.device = device
         self.transformer = Transformer(
             src_vocab,
@@ -37,26 +26,6 @@ class TranslatorModel:
         for p in self.transformer.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
-
-        criterion = LabelSmoothing(
-            tgt_vocab, padding_idx=0, smoothing=self.config.smoothing
-        )
-        self.loss = SimpleLossCompute(self.transformer.generator, criterion)
-        self.optimizer = torch.optim.Adam(
-            self.transformer.parameters(),
-            lr=self.config.optimizer.lr,
-            betas=(0.9, 0.98),
-            eps=1e-9,
-        )
-        self.scheduler = LambdaLR(
-            optimizer=self.optimizer,
-            lr_lambda=lambda step: rate(
-                step,
-                model_size=self.transformer.src_embed[0].d_model,
-                factor=1.0,
-                warmup=self.config.optimizer.warmup,
-            ),
-        )
 
     def train(self):
         self.transformer.train()
@@ -79,13 +48,3 @@ class TranslatorModel:
                 [ys, torch.zeros(1, 1).type_as(src.data).fill_(next_word)], dim=1
             )
         return ys
-
-    def learn(self, pred, target, norm):
-        loss, loss_node = self.loss(pred, target, norm)
-        loss_node.backward()
-        return loss, loss_node
-
-    def update(self):
-        self.optimizer.step()
-        self.optimizer.zero_grad(set_to_none=True)
-        self.scheduler.step()

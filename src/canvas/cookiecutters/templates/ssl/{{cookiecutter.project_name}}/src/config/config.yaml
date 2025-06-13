@@ -14,11 +14,10 @@ model:
   num_decoder_layers: 6
   dim_feedforward: 2048
   dropout: 0.1
-  optimizer:
-    lr: 1.0
-    warmup: 3000
-  smoothing: 0.1
 
 algorithm:
+  lr: 1.0
+  warmup: 3000
+  smoothing: 0.1
   accum_iter: 10
   epochs: 8
