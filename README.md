@@ -9,7 +9,7 @@ A simple, flexible, and modular pytorch template for your deep learning projects
 - Self-Supervised Learning (SSL)
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/architecture.svg">
+<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg">
 </p>
 
 ## Installation
@@ -26,13 +26,13 @@ pip install -i https://test.pypi.org/simple/ canvas-template==0.1.4
 To start a new project, run the following command:
 
 ```
-canvas create {sl/ssl/rl}
+canvas init {sl/ssl/rl}
 ```
 
-The following settings will create a project named *my_project* with the self-supervised learning (ssl) template. 
+The following settings will create a project named *my_project* with the self-supervised learning (ssl) template.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/assets/terminal_output.png">
+<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/terminal_output.png">
 </p>
 
 
@@ -45,7 +45,7 @@ The directory structure of your new project will look something like this (depen
 │   ├── weights
 │   ├── model.py
 │   ├── network.py
-│   
+│
 │
 ├── data                 - this folder contains code relevant to the data and datasets
 │   ├── datasets
@@ -53,7 +53,7 @@ The directory structure of your new project will look something like this (depen
 │   └── prepare.py
 │
 ├── algorithm            - this folder contains different algorithms of your project
-│   ├── loss.py  
+│   ├── loss.py
 │   ├── trainer.py
 │   └── evaluator.py
 │

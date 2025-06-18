@@ -15,14 +15,13 @@ def info():
 
 @click.command()
 @click.argument("type", type=click.Choice(["sl", "ssl", "rl"]))
-def create(type):
-    BASE_PATH = os.path.dirname(__file__) + "/cookiecutters"
-    DIRECTORY_PATH = f"templates/{type}"
-    cookiecutter(BASE_PATH, directory=DIRECTORY_PATH)
+def init(type):
+    BASE_PATH = os.path.dirname(__file__) + "/templates"
+    cookiecutter(BASE_PATH, directory=type)
 
 
 main.add_command(info)
-main.add_command(create)
+main.add_command(init)
 
 if __name__ == "__main__":
     main()

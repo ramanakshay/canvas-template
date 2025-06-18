@@ -1,0 +1,16 @@
+system:
+  device: gpu
+
+data:
+  dataset_path: dataset/
+  batch_size: 64
+
+model:
+  input_dim: 784
+  hidden_dim: 200
+  output_dim: 10
+
+algorithm:
+  epochs: 5
+  learning_rate: 1e-3
+  weight_decay: 1e-6

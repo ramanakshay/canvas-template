@@ -1,14 +1,7 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
-[tool.flit.module]
-name = "canvas"
-
 [project]
 name = "canvas-template"
 readme = "README.md"
-version = "0.1.5"
+version = "0.1.6"
 description = "A flexible and modular deep learning project template."
 authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
 license = "MIT"
@@ -20,9 +13,12 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = ["cookiecutter", "click"]
 
-[project.scripts]
-canvas = "canvas.__main__:main"
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[project.urls]
-"Homepage" = "https://github.com/ramanakshay/canvas/"
-"Source Code" = "https://github.com/ramanakshay/canvas/"
+[tool.hatch.build.targets.wheel]
+packages = ["src/canvas"]
+
+[project.scripts]
+canvas = "canvas:main"

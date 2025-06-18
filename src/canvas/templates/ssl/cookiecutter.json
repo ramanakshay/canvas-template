@@ -1,0 +1,8 @@
+{
+  "project_name": "example-project",
+  "author_name": "Your name/organization/team",
+  "description": "Add your description here.",
+  "environment_manager": ["None", "venv", "uv"],
+  "license": ["None", "MIT", "BSD-3-Clause"],
+  "documentation": ["None", "mkdocs"]
+}

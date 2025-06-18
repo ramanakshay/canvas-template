@@ -1,0 +1,23 @@
+system:
+  device: cpu
+
+environment:
+  name: CartPole-v1
+  max_ep_steps: 500
+
+data:
+  capacity: 5000
+
+agent:
+  hidden_dim: 64
+
+algorithm:
+  trainer:
+    epochs: 100
+    learning_rate: 1e-3
+    lamda: 0.9
+    gamma: 0.99
+    epsilon: 0.2
+    eval_interval: 10
+  evaluator:
+    eval_episodes: 5
