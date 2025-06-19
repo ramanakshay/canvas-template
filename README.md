@@ -4,6 +4,11 @@
 
 A simple, flexible, and modular template for your deep learning projects using pytorch and hydra. Inspired from the agent-environment interface, Canvas aims to provide a unified template for all ML projects.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
+alt="Canvas Architecture Diagram">
+</p>
+
 ## Available Templates
 
 Canvas offers unique templates to kickstart various machine learning tasks:
@@ -13,11 +18,6 @@ Canvas offers unique templates to kickstart various machine learning tasks:
 * **Reinforcement Learning (RL):**  Designed for building agents that learn by interacting with an environment.
 
 * **Self-Supervised Learning (SSL):** Train models to learn representations from unlabeled data.
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
-alt="Canvas Architecture Diagram">
-</p>
 
 ## Installation
 
