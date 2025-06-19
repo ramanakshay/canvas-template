@@ -36,14 +36,14 @@ pip install canvas-template
 To create a new project, just run the `canvas init` command and pick your template. No need to create a directory first; Canvas will do it for you.
 
 ```
-canvas init {sl/ssl/rl}
+canvas init [sl|ssl|rl]
 ```
 
 **Example:** The following settings will create a project named *my_project* with the self-supervised learning (SSL) template.
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/terminal_output.png"
-alt="Canvas Usage">
+<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/canvas_demo.png"
+alt="Canvas Demo">
 </p>
 
 
