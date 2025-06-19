@@ -13,8 +13,5 @@ if "{{ cookiecutter.documentation }}" == "None":
 # Choose lockfile based on environment manager
 if "{{ cookiecutter.environment_manager }}" == "uv":
     os.remove("requirements.txt")
-elif "{{ cookiecutter.environment_manager }}" == "venv":
-    os.remove("uv.lock")
 else:
-    os.remove("requirements.txt")
     os.remove("uv.lock")

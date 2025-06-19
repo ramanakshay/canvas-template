@@ -24,11 +24,11 @@ Canvas offers unique templates to kickstart various machine learning tasks:
 Canvas requires **Python 3.9+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) for installation
 
 ```
-# Recommended: Using uv tool
-uv tool install -i https://test.pypi.org/simple/ canvas-template
+# Recommended: with uv tool
+uv tool install canvas-template
 
-# Alternative: Install with pip from TestPyPI
-pip install -i https://test.pypi.org/simple/ canvas-template
+# Alternative: with pip
+pip install canvas-template
 ```
 
 ## Usage
