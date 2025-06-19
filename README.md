@@ -60,28 +60,28 @@ example-project/
 ├── pyproject.toml          # Project metadata and dependencies
 ├── uv.lock                 # uv lock file for consistent environments
 ├── docs/                   # Where your project's documentation lives
-│   └── index.md
+│   └── index.md
 ├── src/                    # All the code for your deep learning project
-│   ├── main.py             # The main script to run training, evaluation, or inference
-│   ├── config/             # Hydra configuration files for managing settings
-│   │   └── config.yaml
-│   ├── model/              # Your deep learning model definitions
-│   │   ├── __init__.py
-│   │   ├── model.py
-│   │   └── network.py
-│   ├── data/               # Scripts for loading and preparing your data
-│   │   ├── __init__.py
-│   │   ├── data.py
-│   │   └── prepare.py
-│   └── algorithm/          # The core machine learning logic: training, loss, evaluation
-│       ├── __init__.py
-│       ├── loss.py
-│       ├── trainer.py
-│       └── evaluator.py
+│   ├── main.py             # The main script to run training, evaluation, or inference
+│   ├── config/             # Hydra configuration files for managing settings
+│   │   └── config.yaml
+│   ├── model/              # Your deep learning model definitions
+│   │   ├── __init__.py
+│   │   ├── model.py
+│   │   └── network.py
+│   ├── data/               # Scripts for loading and preparing your data
+│   │   ├── __init__.py
+│   │   ├── data.py
+│   │   └── prepare.py
+│   └── algorithm/          # The core machine learning logic: training, loss, evaluation
+│       ├── __init__.py
+│       ├── loss.py
+│       ├── trainer.py
+│       └── evaluator.py
 ├── dataset/                # Place your raw or processed datasets here
-│   └── ...
+│   └── ...
 └── outputs/                # Where experiment logs, model checkpoints, and results are saved
-    └── ...
+    └── ...
 ```
 
 ## Contributing
