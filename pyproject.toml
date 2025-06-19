@@ -1,8 +1,8 @@
 [project]
 name = "canvas-template"
 readme = "README.md"
-version = "0.1.10"
-description = "A flexible and modular deep learning project template."
+version = "0.1.13"
+description = "A simple, flexible, and modular pytorch template for your deep learning projects."
 authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
@@ -15,7 +15,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 requires-python = ">=3.9"
-dependencies = ["cookiecutter>=2.6.0", "click>=8.1.8"]
+dependencies = ["cookiecutter>=2.0.3", "click>=8.1.7"]
 
 [project.optional-dependencies]
 docs = ["mkdocs>=1.6.1"]
