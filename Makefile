@@ -9,7 +9,7 @@ build:
 
 .PHONY: publish
 publish: dist
-	uv publish --publish-url https://test.pypi.org/legacy/
+	uv publish
 
 .PHONY: clean
 clean:
