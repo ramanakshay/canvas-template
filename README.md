@@ -2,12 +2,9 @@
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
-A simple, flexible, and modular template for your deep learning projects using pytorch and hydra. Inspired from the agent-environment interface, Canvas aims to provide a unified template for all ML projects.
+A simple, flexible, and modular template for your deep learning projects using PyTorch and Hydra. Inspired by the agent-environment interface, Canvas aims to provide a unified template for all ML projects.
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
-alt="Canvas Architecture Diagram">
-</p>
+![Canvas Architecture](https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg)
 
 ## Available Templates
 
@@ -41,11 +38,7 @@ canvas init [sl|ssl|rl]
 
 **Example:** The following settings will create a project named *my_project* with the self-supervised learning (SSL) template.
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/canvas_demo.png"
-alt="Canvas Demo">
-</p>
-
+![Canvas Demo](https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/canvas_demo.png)
 
 ## Project Structure
 
