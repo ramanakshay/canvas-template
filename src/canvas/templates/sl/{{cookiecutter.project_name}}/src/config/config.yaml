@@ -1,5 +1,5 @@
 system:
-  device: gpu
+  device: cuda
 
 data:
   dataset_path: dataset/
