@@ -1,4 +1,4 @@
 __all__ = ["DiscreteActorCritic"]
 
 
-from agent.model import DiscreteActorCritic
+from .model import DiscreteActorCritic
