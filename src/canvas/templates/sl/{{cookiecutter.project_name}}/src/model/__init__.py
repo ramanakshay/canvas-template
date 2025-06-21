@@ -1,3 +1,3 @@
 __all__ = ["ClassifierModel"]
 
-from .model import ClassifierModel
+from model.model import ClassifierModel

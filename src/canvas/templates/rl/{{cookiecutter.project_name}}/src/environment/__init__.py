@@ -1,4 +1,4 @@
 __all__ = ["GymEnvironment"]
 
 
-from .environment import GymEnvironment
+from environment.environment import GymEnvironment

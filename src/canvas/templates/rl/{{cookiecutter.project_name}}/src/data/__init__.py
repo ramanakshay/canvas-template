@@ -1,3 +1,3 @@
 __all__ = ["RolloutBuffer"]
 
-from .rollout_buffer import RolloutBuffer
+from data.rollout_buffer import RolloutBuffer

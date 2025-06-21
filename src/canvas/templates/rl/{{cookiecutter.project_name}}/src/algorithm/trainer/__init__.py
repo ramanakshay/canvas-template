@@ -1,4 +1,4 @@
 __all__ = ["VPGTrainer", "PPOTrainer"]
 
-from .vpg import VPGTrainer
-from .ppo import PPOTrainer
+from algorithm.trainer.vpg import VPGTrainer
+from algorithm.trainer.ppo import PPOTrainer
