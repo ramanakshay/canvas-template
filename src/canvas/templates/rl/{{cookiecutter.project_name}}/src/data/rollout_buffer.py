@@ -15,9 +15,9 @@ class RolloutBuffer:
                 dtype=obs_space.dtype,
             ),
             act=np.empty((self.capacity, *act_space.shape), dtype=act_space.dtype),
-            logprob=np.empty((self.capacity,), dtype=np.float32),
-            rew=np.empty((self.capacity,), dtype=np.float32),
-            done=np.empty((self.capacity,), dtype=bool),
+            logprob=np.empty((self.capacity, 1), dtype=np.float32),
+            rew=np.empty((self.capacity, 1), dtype=np.float32),
+            done=np.empty((self.capacity, 1), dtype=bool),
         )
         self.size = 0
 
@@ -26,6 +26,12 @@ class RolloutBuffer:
         for key in data:
             self.data[key][self.size] = data[key]
         self.size += 1
+
+    def get_batch(self):
+        batch = dict()
+        for key in self.data:
+            batch[key] = self.data[key].copy()
+        return batch
 
     def reset(self):
         self.size = 0

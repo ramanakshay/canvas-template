@@ -14,14 +14,14 @@ class Evaluator:
         for _ in range(self.config.eval_episodes):
             obs, info = self.env.reset()
             while True:
-                _, act = self.agent.get_action(torch.from_numpy(obs))
-                obs, reward, terminated, truncated, info = self.env.step(
-                    act.detach().numpy()
-                )
+                act, _ = self.agent.act(obs)
+                obs, reward, terminated, truncated, info = self.env.step(act)
                 done = terminated or truncated
                 if done:
                     break
 
-        print(f"Episode time taken: {self.env.time_queue}")
-        print(f"Episode total rewards: {self.env.return_queue}")
-        print(f"Episode lengths: {self.env.length_queue}")
+        avg_return = sum(list(self.env.return_queue)) / len(self.env.return_queue)
+        avg_length = sum(list(self.env.length_queue)) / len(self.env.length_queue)
+        print(f"Evaluation over {self.config.eval_episodes} episodes:")
+        print(f"Average Return: {avg_return:.2f}")
+        print(f"Average Length: {avg_length:.2f}")

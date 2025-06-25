@@ -1,23 +1,22 @@
 system:
-  device: cpu
+    device: cuda
 
 environment:
-  name: CartPole-v1
-  max_ep_steps: 500
+    name: CartPole-v1
+    max_ep_steps: 500
 
-data:
-  capacity: 5000
+buffer:
+    capacity: 5000
 
 agent:
-  hidden_dim: 64
-
-algorithm:
-  trainer:
-    epochs: 100
+    hidden_dims: [64]
     learning_rate: 1e-3
     lamda: 0.9
     gamma: 0.99
     epsilon: 0.2
+
+trainer:
+    epochs: 100
     eval_interval: 10
-  evaluator:
-    eval_episodes: 5
+    evaluator:
+        eval_episodes: 5

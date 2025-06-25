@@ -1,4 +1,4 @@
-__all__ = ["DiscreteActorCritic"]
+__all__ = ["PPOAgent"]
 
 
-from agent.model import DiscreteActorCritic
+from agent.model import PPOAgent
