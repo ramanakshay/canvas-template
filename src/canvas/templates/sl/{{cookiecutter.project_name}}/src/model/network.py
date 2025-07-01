@@ -2,18 +2,19 @@ from torch import nn
 
 
 class MLP(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim):
+    def __init__(self, input_dim, output_dim, hidden_dims):
         super().__init__()
+        layers = []
+        current_dim = input_dim
+        for hidden_dim in hidden_dims:
+            layers.append(nn.Linear(current_dim, hidden_dim))
+            layers.append(nn.ReLU())
+            current_dim = hidden_dim
+        layers.append(nn.Linear(current_dim, output_dim))
+        self.network = nn.Sequential(*layers)
         self.flatten = nn.Flatten()
-        self.linear_relu_stack = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, output_dim),
-        )
 
     def forward(self, x):
         x = self.flatten(x)
-        logits = self.linear_relu_stack(x)
-        return logits
+        x = self.network(x)
+        return x

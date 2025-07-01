@@ -15,7 +15,7 @@ class FashionMNISTData:
             transform=ToTensor(),
         )
 
-        self.test_dataset = datasets.FashionMNIST(
+        self.val_dataset = datasets.FashionMNIST(
             root=self.config.dataset_path,
             train=False,
             download=True,
@@ -25,4 +25,4 @@ class FashionMNISTData:
         # Dataloaders
         batch_size = self.config.batch_size
         self.train_dataloader = DataLoader(self.train_dataset, batch_size)
-        self.test_dataloader = DataLoader(self.test_dataset, batch_size)
+        self.val_dataloader = DataLoader(self.val_dataset, batch_size)

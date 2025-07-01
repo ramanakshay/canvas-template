@@ -1,37 +1,34 @@
-from data import TranslateData
-from model import TranslatorModel
 from algorithm import SSLTrainer
+from model import TransformerModel
+from data import TranslateData
 
-import torch
 import hydra
-from omegaconf import DictConfig
-from rope.contrib.autoimport.models import Model
+from omegaconf import DictConfig, OmegaConf
+import torch
 
 
 def setup(config):
-    torch.manual_seed(42)
-    device = config.system.device
-    if device == "auto":
-        device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = torch.device(config.device)
     return device
 
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config: DictConfig) -> None:
     ## SETUP ##
-    device = setup(config)
+    device = setup(config.system)
 
     ## DATA ##
-    data = TranslateData(config.data, device)
-    src_vocab, tgt_vocab = len(data.vocab["de"]), len(data.vocab["en"])
+    data = TranslateData(config.data)
     print("Data Loaded.")
 
     ## MODEL ##
-    model = TranslatorModel(src_vocab, tgt_vocab, config.model, device)
+    src_vocab, tgt_vocab = len(data.vocab["de"]), len(data.vocab["en"])
+    model = TransformerModel(src_vocab, tgt_vocab, config.model, device)
     print("Model Created.")
 
     ## ALGORITHM ##
-    algorithm = SSLTrainer(data, model, config.algorithm, device)
+    print("Running Algorithm...")
+    algorithm = SSLTrainer(data, model, config.trainer)
     algorithm.run()
     print("Done!")
 

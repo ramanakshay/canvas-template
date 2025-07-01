@@ -27,11 +27,11 @@ PYTHON = python
 
 .PHONY: install
 install:
-	python -m pip install -r requirements.txt
+	$(PYTHON) -m pip install -r requirements.txt
 
 .PHONY: train
 train:
-	python src/main.py
+	$(PYTHON) src/main.py
 {% endif %}
 .PHONY: clean
 clean:

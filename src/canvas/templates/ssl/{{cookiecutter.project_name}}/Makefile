@@ -9,6 +9,8 @@ install: .venv
 	@echo "Installing Dependencies.."
 	$(PYTHON) -m pip install --upgrade pip
 	$(PYTHON) -m pip install -r requirements.txt
+	$(PYTHON) -m spacy download de_core_news_sm
+	$(PYTHON) -m spacy download en_core_web_sm
 	@echo "Dependencies installed."
 
 .PHONY: train
@@ -18,6 +20,8 @@ train:
 .PHONY: install
 install:
 	uv sync
+	uv run spacy download de_core_news_sm
+	uv run spacy download en_core_web_sm
 
 .PHONY: train
 train:
@@ -27,11 +31,11 @@ PYTHON = python
 
 .PHONY: install
 install:
-	python -m pip install -r requirements.txt
+	$(PYTHON) -m pip install -r requirements.txt
 
 .PHONY: train
 train:
-	python src/main.py
+	$(PYTHON) src/main.py
 {% endif %}
 .PHONY: clean
 clean:

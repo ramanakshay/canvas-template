@@ -33,7 +33,7 @@ class OnPolicyRLTrainer:
                 obs = next_obs
 
         batch = self.buffer.get_batch()
-        self.agent.update(batch)
+        self.agent.train(batch)
         self.buffer.reset()
 
     def run(self):

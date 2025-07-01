@@ -1,20 +1,4 @@
 import time
-import torch
-from algorithm.utils import Batch
-from torch.optim.lr_scheduler import LambdaLR
-from algorithm.loss import SimpleLossCompute, LabelSmoothing
-
-
-def rate(step, model_size, factor, warmup):
-    """
-    we have to default the step to 1 for LambdaLR function
-    to avoid zero raising to negative power.
-    """
-    if step == 0:
-        step = 1
-    return factor * (
-        model_size ** (-0.5) * min(step ** (-0.5), step * warmup ** (-1.5))
-    )
 
 
 class TrainState:
@@ -27,38 +11,14 @@ class TrainState:
 
 
 class SSLTrainer:
-    def __init__(self, data, model, config, device):
+    def __init__(self, data, model, config):
         self.data = data
         self.model = model
         self.config = config
-        self.dataloaders = self.data.get_dataloaders()
-        self.device = device
-
-        self.accum_iter = self.config.accum_iter
         self.train_state = TrainState()
 
-        criterion = LabelSmoothing(
-            self.model.tgt_vocab, padding_idx=0, smoothing=self.config.smoothing
-        )
-        self.loss = SimpleLossCompute(self.model.transformer.generator, criterion)
-        self.optimizer = torch.optim.Adam(
-            self.model.transformer.parameters(),
-            lr=self.config.lr,
-            betas=(0.9, 0.98),
-            eps=1e-9,
-        )
-        self.scheduler = LambdaLR(
-            optimizer=self.optimizer,
-            lr_lambda=lambda step: rate(
-                step,
-                model_size=self.model.config.d_model,
-                factor=1.0,
-                warmup=self.config.warmup,
-            ),
-        )
-
-    def run_epoch(self, mode):
-        self.model.train()
+    def run_epoch(self):
+        self.model.set_mode(is_training=True)
         start = time.time()
         total_tokens = 0
         total_loss = 0
@@ -66,36 +26,20 @@ class SSLTrainer:
         n_accum = 0
         train_state = self.train_state
 
-        for i, b in enumerate(self.dataloaders[mode]):
-            batch = Batch(b[0], b[1], pad=2)
-            batch.to(self.device)
-            pred = self.model.predict(
-                batch.src, batch.tgt, batch.src_mask, batch.tgt_mask
-            )
-            target, norm = batch.tgt_y, batch.ntokens
-
-            if mode == "train":
-                loss, loss_node = self.loss(pred, target, norm)
-                loss_node.backward()
-                train_state.step += 1
-                train_state.samples += batch.src.shape[0]
-                train_state.tokens += batch.ntokens
-                if i % self.accum_iter == 0:
-                    self.optimizer.step()
-                    self.optimizer.zero_grad(set_to_none=True)
-                    self.scheduler.step()
-                    n_accum += 1
-                    train_state.accum_step += 1
-            else:
-                with torch.no_grad():
-                    loss, loss_node = self.loss(pred, target, norm)
-
+        for i, batch in enumerate(self.data.train_dataloader):
+            loss = self.model.train(batch)
+            train_state.step += 1
+            train_state.samples += batch.src.shape[0]
+            train_state.tokens += batch.ntokens
+            if i % self.config.accum_interval == 0:
+                self.model.update()
+                n_accum += 1
+                train_state.accum_step += 1
             total_loss += loss
             total_tokens += batch.ntokens
             tokens += batch.ntokens
-
-            if i % 40 == 1 and (mode == "train"):
-                lr = self.optimizer.param_groups[0]["lr"]
+            if i % self.config.log_interval == 0:
+                lr = self.model.get_lr()
                 elapsed = time.time() - start
                 print(
                     (
@@ -106,14 +50,9 @@ class SSLTrainer:
                 )
                 start = time.time()
                 tokens = 0
-
-            del loss
-            del loss_node
-        return total_loss / total_tokens
+        training_loss = total_loss / total_tokens
+        print(f"Training Loss: {training_loss}")
 
     def run(self):
         for epoch in range(self.config.epochs):
-            self.model.train()
-            self.run_epoch(mode="train")
-            self.model.eval()
-            self.run_epoch(mode="valid")
+            self.run_epoch()

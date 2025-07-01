@@ -1,23 +1,26 @@
 system:
-  device: cpu
+    device: cpu
 
 data:
-  dataset_path: dataset/multi30k/
-  vocab_path: dataset/vocab.pt
-  max_padding: 72
-  batch_size: 32
+    dataset_path: dataset/multi30k/
+    vocab_path: dataset/vocab.pt
+    max_padding: 72
+    batch_size: 32
 
 model:
-  d_model: 512
-  nhead: 8
-  num_encoder_layers: 6
-  num_decoder_layers: 6
-  dim_feedforward: 2048
-  dropout: 0.1
+    network:
+        N: 1
+        d_model: 10
+        d_ff: 10
+        h: 2
+        dropout: 0.1
+    optimizer:
+        lr: 1.0
+        warmup: 3000
+    loss:
+        smoothing: 0.1
 
-algorithm:
-  lr: 1.0
-  warmup: 3000
-  smoothing: 0.1
-  accum_iter: 10
-  epochs: 8
+trainer:
+    accum_interval: 10
+    log_interval: 1
+    epochs: 8

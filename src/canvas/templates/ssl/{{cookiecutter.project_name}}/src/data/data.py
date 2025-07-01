@@ -5,9 +5,8 @@ from data.preprocessing import Collator
 
 
 class TranslateData:
-    def __init__(self, config, device):
+    def __init__(self, config):
         self.config = config
-        self.device = device
 
         spacy_de, spacy_en = load_tokenizers()
         self.tokenizer = {"de": spacy_de, "en": spacy_en}
@@ -17,9 +16,7 @@ class TranslateData:
         )
         self.vocab = {"de": vocab_src, "en": vocab_tgt}
 
-        collator = Collator(
-            self.tokenizer, self.vocab, self.device, self.config.max_padding
-        )
+        collator = Collator(self.tokenizer, self.vocab, self.config.max_padding)
 
         train, val, test = multi30k_dataset(
             directory=self.config.dataset_path,
@@ -46,6 +43,3 @@ class TranslateData:
             shuffle=True,
             collate_fn=collator,
         )
-
-    def get_dataloaders(self):
-        return {"train": self.train_dataloader, "valid": self.val_dataloader}
