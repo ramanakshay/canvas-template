@@ -68,14 +68,14 @@ example-project/
 │   ├── model/              # Your deep learning model definitions
 │   │   ├── __init__.py
 │   │   ├── model.py
-│   │   └── network.py
+│   │   ├── network.py
+│   │   └── loss.py
 │   ├── data/               # Scripts for loading and preparing your data
 │   │   ├── __init__.py
 │   │   ├── data.py
-│   │   └── prepare.py
-│   └── algorithm/          # The core machine learning logic: training, loss, evaluation
+│   │   └── preprocess.py
+│   └── algorithm/          # The core algorithm logic: training, evaluation
 │       ├── __init__.py
-│       ├── loss.py
 │       ├── trainer.py
 │       └── evaluator.py
 ├── dataset/                # Place your raw or processed datasets here
