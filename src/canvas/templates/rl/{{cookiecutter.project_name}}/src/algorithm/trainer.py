@@ -6,16 +6,18 @@ from algorithm.evaluator import Evaluator
 class OnPolicyRLTrainer:
     def __init__(self, env, buffer, agent, config):
         self.config = config
-        self.env = env.env
+        self.env = env
         self.agent = agent
         self.buffer = buffer
         self.evaluator = Evaluator(env, agent, config.evaluator)
 
-    def run_epoch(self):
-        obs, info = self.env.reset()
+    def run_training(self):
+        env = self.env.env
+
+        obs, info = env.reset()
         for step in range(self.buffer.capacity):
             act, logprob = self.agent.act(obs)
-            next_obs, reward, terminated, truncated, info = self.env.step(act)
+            next_obs, reward, terminated, truncated, info = env.step(act)
             done = terminated or truncated
             self.buffer.insert(
                 dict(
@@ -28,7 +30,7 @@ class OnPolicyRLTrainer:
                 )
             )
             if done:
-                obs, info = self.env.reset()
+                obs, info = env.reset()
             else:
                 obs = next_obs
 
@@ -39,6 +41,6 @@ class OnPolicyRLTrainer:
     def run(self):
         print(f"Total Timesteps = {self.config.epochs * self.buffer.capacity}")
         for epoch in tqdm(range(self.config.epochs)):
-            self.run_epoch()
+            self.run_training()
             if epoch % self.config.eval_interval == 0:
                 self.evaluator.run()

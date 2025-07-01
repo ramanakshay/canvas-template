@@ -51,7 +51,7 @@ class SSLTrainer:
                 start = time.time()
                 tokens = 0
         training_loss = total_loss / total_tokens
-        print(f"Training Loss: {training_loss}")
+        print(f"Epoch Loss: {training_loss}")
 
     def run(self):
         for epoch in range(self.config.epochs):
