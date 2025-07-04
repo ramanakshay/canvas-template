@@ -21,10 +21,10 @@ Canvas offers unique templates to kickstart various machine learning tasks:
 
 ## Installation
 
-Canvas requires **Python 3.9+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) for installation
+Canvas requires **Python 3.9+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) for installation.
 
 ```
-# Recommended: with uv tool
+# Recommended: with uv
 uv tool install canvas-template
 
 # Alternative: with pip
@@ -53,7 +53,7 @@ The directory structure of your new project will look something like this (depen
 
 ```
 example-project/
-├── Makefile                # Useful commands for development
+├── Makefile                # Convinient make commands
 ├── LICENSE                 # Project license
 ├── README.md               # Your project's main README file
 ├── mkdocs.yml              # Configuration for building documentation
@@ -62,7 +62,7 @@ example-project/
 ├── docs/                   # Where your project's documentation lives
 │   └── index.md
 ├── src/                    # All the code for your deep learning project
-│   ├── main.py             # The main script to run training, evaluation, or inference
+│   ├── main.py             # The main entry point of your project
 │   ├── config/             # Hydra configuration files for managing settings
 │   │   └── config.yaml
 │   ├── model/              # Your deep learning model definitions
@@ -74,7 +74,7 @@ example-project/
 │   │   ├── __init__.py
 │   │   ├── data.py
 │   │   └── preprocess.py
-│   └── algorithm/          # The core algorithm logic: training, evaluation
+│   └── algorithm/          # The core algorithm: training, evaluation
 │       ├── __init__.py
 │       ├── trainer.py
 │       └── evaluator.py
