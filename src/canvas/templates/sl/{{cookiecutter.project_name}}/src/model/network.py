@@ -14,7 +14,7 @@ class MLP(nn.Module):
         self.network = nn.Sequential(*layers)
         self.flatten = nn.Flatten()
 
-    def forward(self, x):
-        x = self.flatten(x)
-        x = self.network(x)
-        return x
+    def forward(self, images):
+        x = self.flatten(images)
+        preds = self.network(x)
+        return preds

@@ -2,7 +2,7 @@
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
-A simple, flexible, and modular template for your deep learning projects using PyTorch and Hydra. Inspired by the agent-environment interface, Canvas aims to provide a unified template for all ML projects.
+A simple, flexible, and modular PyTorch template for kickstarting your deep learning projects. Inspired by the agent-environment interface, Canvas aims to provide a unified template for all types of ML projects.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
@@ -21,7 +21,7 @@ Canvas offers unique templates to kickstart various machine learning tasks:
 
 ## Installation
 
-Canvas requires **Python 3.9+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) for installation.
+Canvas requires **Python 3.11+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) for installation.
 
 ```
 # Recommended: with uv
@@ -33,7 +33,7 @@ pip install canvas-template
 
 ## Usage
 
-To create a new project, just run the `canvas init` command and pick your template. No need to create a directory first; Canvas will do it for you.
+To create a new project, run the `canvas init` command and pick your template. No need to create a directory first; Canvas will do it for you.
 
 ```
 canvas init [sl|ssl|rl]
@@ -53,7 +53,7 @@ The directory structure of your new project will look something like this (depen
 
 ```
 example-project/
-├── Makefile                # Convinient make commands
+├── Makefile                # Convenient make commands
 ├── LICENSE                 # Project license
 ├── README.md               # Your project's main README file
 ├── mkdocs.yml              # Configuration for building documentation
@@ -61,7 +61,7 @@ example-project/
 ├── uv.lock                 # uv lock file for consistent environments
 ├── docs/                   # Where your project's documentation lives
 │   └── index.md
-├── src/                    # All the code for your deep learning project
+├── src/                    # All the source code for your deep learning project
 │   ├── main.py             # The main entry point of your project
 │   ├── config/             # Hydra configuration files for managing settings
 │   │   └── config.yaml
@@ -86,9 +86,10 @@ example-project/
 
 ## Contributing
 
-Any kind of enhancement or contribution is welcomed. If you have bug fixes, new features, or any improvements, I'd love your help!
+Any kind of enhancement or contribution is welcome. If you have bug fixes, new features, or any improvements, I'd love your help!
 
 ### TODOs
 
-- [ ] Support for loggers (wandb, tensorboard)
-- [ ] Distributed training integration (ddp, accelerator, etc.)
+- [ ] Experiment Tracking (wandb, tensorboard)
+- [ ] Testing Framework (pytest, unittest)
+- [ ] Distributed Training (pytorch, accelerate)

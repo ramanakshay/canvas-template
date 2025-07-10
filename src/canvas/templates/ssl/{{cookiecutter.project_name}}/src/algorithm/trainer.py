@@ -17,7 +17,7 @@ class SSLTrainer:
         self.config = config
         self.train_state = TrainState()
 
-    def run_epoch(self):
+    def run_training(self):
         self.model.set_mode(is_training=True)
         start = time.time()
         total_tokens = 0
@@ -32,7 +32,8 @@ class SSLTrainer:
             train_state.samples += batch.src.shape[0]
             train_state.tokens += batch.ntokens
             if i % self.config.accum_interval == 0:
-                self.model.update()
+                self.model.optimizer_step()
+                self.model.scheduler_step()
                 n_accum += 1
                 train_state.accum_step += 1
             total_loss += loss
@@ -55,4 +56,4 @@ class SSLTrainer:
 
     def run(self):
         for epoch in range(self.config.epochs):
-            self.run_epoch()
+            self.run_training()

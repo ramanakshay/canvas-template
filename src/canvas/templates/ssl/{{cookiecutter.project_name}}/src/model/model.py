@@ -96,7 +96,9 @@ class TransformerModel:
         loss_node.backward()
         return loss
 
-    def update(self):
+    def optimizer_step(self):
         self.optimizer.step()
         self.optimizer.zero_grad(set_to_none=True)
+
+    def scheduler_step(self):
         self.scheduler.step()

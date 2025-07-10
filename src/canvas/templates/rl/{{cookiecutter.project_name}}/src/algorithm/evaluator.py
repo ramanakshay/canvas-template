@@ -1,4 +1,7 @@
+import logging
 from gymnasium.wrappers import RecordEpisodeStatistics
+
+logger = logging.getLogger(__name__)
 
 
 class Evaluator:
@@ -23,6 +26,8 @@ class Evaluator:
 
         avg_return = sum(list(env.return_queue)) / len(env.return_queue)
         avg_length = sum(list(env.length_queue)) / len(env.length_queue)
-        print(f"Evaluation over {self.config.eval_episodes} episodes.")
-        print(f"Average Return: {avg_return:.2f}")
-        print(f"Average Length: {avg_length:.2f}")
+
+        logger.info(f"Evaluation over {self.config.eval_episodes} episodes.")
+        logger.info(
+            f"Average Return: {avg_return:.2f}, Average Length: {avg_length:.2f}"
+        )

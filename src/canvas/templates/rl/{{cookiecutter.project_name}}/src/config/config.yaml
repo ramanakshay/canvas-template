@@ -1,22 +1,40 @@
+hydra:
+  job_logging:
+    root:
+      level: INFO
+
 system:
-    device: cuda
+  device: cpu
 
 environment:
-    name: CartPole-v1
-    max_ep_steps: 500
+  name: CartPole-v1
+  max_ep_steps: 500
 
 buffer:
-    capacity: 5000
+  capacity: 512
+  minibatch_size: 64
 
 agent:
+  checkpoint_path: agent/model.pth
+  load_from_checkpoint: false
+  actor:
     hidden_dims: [64]
-    learning_rate: 1e-3
-    lamda: 0.9
-    gamma: 0.99
-    epsilon: 0.2
+    optimizer:
+      learning_rate: 0.001
+  critic:
+    hidden_dims: [64]
+    optimizer:
+      learning_rate: 0.001
+  critic_coef: 0.5
+  gae_chunk_size: null
+  gae_lambda: 0.95
+  gamma: 0.99
+  epsilon: 0.2
 
 trainer:
-    epochs: 100
-    eval_interval: 10
-    evaluator:
-        eval_episodes: 5
+  epochs: 200
+  num_updates: 4
+  eval_interval: 10
+  log_interval: 10
+  evaluator:
+    eval_episodes: 20

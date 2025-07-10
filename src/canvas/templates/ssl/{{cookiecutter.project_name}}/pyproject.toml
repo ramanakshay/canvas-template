@@ -20,9 +20,20 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "pip>=25.1.1",
+{%- if cookiecutter.linting_and_formatting == 'ruff' %}
+    "ruff~=0.12",
+{%- elif cookiecutter.linting_and_formatting == 'flake8+isort+black' %}
+    "flake8~=7.2",
+    "isort~=6.0",
+    "black~=25.1",
+{%- endif %}
 ]
-{% if cookiecutter.documentation == 'mkdocs' %}
-[project.optional-dependencies]
-docs = ["mkdocs>=1.6.1"]
-{% endif %}
+{%- if cookiecutter.documentation != 'None' %}
+docs = [
+{%- if cookiecutter.documentation == 'mkdocs' %}
+    "mkdocs~=1.6",
+{%- elif cookiecutter.documentation == 'sphinx' %}
+    "sphinx~=8.2",
+{%- endif %}
+]
+{%- endif %}

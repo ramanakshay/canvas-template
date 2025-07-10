@@ -10,7 +10,9 @@ def main():
 
 @click.command()
 def info():
-    click.echo("Canvas: A simple, flexible, and modular pytorch template for your deep learning projects.")
+    click.echo(
+        "A modular, best-practice pytorch template for all your deep learning projects."
+    )
 
 
 @click.command()

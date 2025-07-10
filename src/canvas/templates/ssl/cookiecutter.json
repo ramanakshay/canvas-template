@@ -2,7 +2,8 @@
   "project_name": "example-project",
   "author_name": "Your name/organization/team",
   "description": "Add your description here.",
-  "environment_manager": ["None", "venv", "uv"],
+  "environment_manager": ["None", "uv", "venv"],
+  "linting_and_formatting": ["None", "ruff", "flake8+isort+black"],
   "license": ["None", "MIT", "BSD-3-Clause"],
-  "documentation": ["None", "mkdocs"]
+  "documentation": ["None", "mkdocs", "sphinx"]
 }

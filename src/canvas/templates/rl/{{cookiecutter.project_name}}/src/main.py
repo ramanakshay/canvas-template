@@ -1,7 +1,7 @@
 from environment import GymEnvironment
 from data import RolloutBuffer
 from agent import PPOAgent
-from algorithm import OnPolicyRLTrainer
+from algorithm import RLTrainer
 
 import torch
 import hydra
@@ -10,32 +10,34 @@ from omegaconf import DictConfig
 
 def setup(config):
     torch.manual_seed(42)
-    device = torch.device(config.system.device)
+    device = torch.device(config.device)
     return device
+
+
+def cleanup():
+    pass
 
 
 @hydra.main(version_base=None, config_path="config", config_name="config")
 def main(config: DictConfig) -> None:
-    ## SETUP ##
-    device = setup(config)
+    # --- SETUP ---
+    device = setup(config.system)
 
-    ## ENVIRONMENT ##
+    # --- ENVIRONMENT ---
     env = GymEnvironment(config.environment)
-    print("Environment Built.")
 
-    ## BUFFER ##
+    # --- DATA ---
     buffer = RolloutBuffer(env.obs_space, env.act_space, config.buffer)
-    print("Empty Buffer Initialized.")
 
-    ## AGENT ##
+    # --- AGENT ---
     agent = PPOAgent(env.obs_space, env.act_space, config.agent, device)
-    print("Agent Created.")
 
-    ## ALGORITHM ##
-    print("Algorithm Running.")
-    trainer = OnPolicyRLTrainer(env, buffer, agent, config.trainer)
+    # --- ALGORITHM ---
+    trainer = RLTrainer(env, buffer, agent, config.trainer)
     trainer.run()
-    print("Done!")
+
+    # --- CLEANUP ---
+    cleanup()
 
 
 if __name__ == "__main__":

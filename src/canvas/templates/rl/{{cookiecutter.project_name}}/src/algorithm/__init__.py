@@ -1,5 +1,5 @@
-__all__ = ["Evaluator", "OnPolicyRLTrainer"]
+__all__ = ["Evaluator", "RLTrainer"]
 
 
-from algorithm.trainer import OnPolicyRLTrainer
+from algorithm.trainer import RLTrainer
 from algorithm.evaluator import Evaluator

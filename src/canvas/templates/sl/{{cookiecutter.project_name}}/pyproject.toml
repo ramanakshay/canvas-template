@@ -10,12 +10,28 @@ license-files = ["LICENSE"]
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "torch>=2.7.1",
-    "hydra-core>=1.3.2",
-    "tqdm>=4.67.1",
-    "torchvision>=0.22.1",
+    "torch~=2.7",
+    "hydra-core~=1.3",
+    "tqdm~=4.67",
+    "torchvision~=0.22",
 ]
-{% if cookiecutter.documentation == 'mkdocs' %}
-[project.optional-dependencies]
-docs = ["mkdocs>=1.6.1"]
-{% endif %}
+
+[dependency-groups]
+dev = [
+{%- if cookiecutter.linting_and_formatting == 'ruff' %}
+    "ruff~=0.12",
+{%- elif cookiecutter.linting_and_formatting == 'flake8+isort+black' %}
+    "flake8~=7.2",
+    "isort~=6.0",
+    "black~=25.1",
+{%- endif %}
+]
+{%- if cookiecutter.documentation != 'None' %}
+docs = [
+{%- if cookiecutter.documentation == 'mkdocs' %}
+    "mkdocs~=1.6",
+{%- elif cookiecutter.documentation == 'sphinx' %}
+    "sphinx~=8.2",
+{%- endif %}
+]
+{%- endif %}
