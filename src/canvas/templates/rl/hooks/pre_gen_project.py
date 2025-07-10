@@ -1,15 +1,18 @@
 import subprocess
 import os
+import sys
 
 if "{{ cookiecutter.documentation }}" == "mkdocs":
-    command = ['mkdocs', 'new', '.', '--quiet']
+    command = [sys.executable, '-m', 'mkdocs', 'new', '.', '--quiet']
     subprocess.run(command,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL)
 elif "{{ cookiecutter.documentation }}" == "sphinx":
     os.mkdir('docs/')
     command = [
-        'sphinx-quickstart',
+        sys.executable,
+        '-m',
+        'sphinx.cmd.quickstart',
         '-q',
         '-p', "{{ cookiecutter.project_name }}",
         '-a', "{{ cookiecutter.author_name }}",
@@ -18,5 +21,5 @@ elif "{{ cookiecutter.documentation }}" == "sphinx":
         'docs/'
     ]
     subprocess.run(command,
-        stdout=subprocess.DEVNULL,  # Suppress standard output
+        stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL)

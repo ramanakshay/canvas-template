@@ -1,7 +1,7 @@
 [project]
 name = "canvas-template"
 readme = "README.md"
-version = "0.3.0"
+version = "0.3.1"
 description = "A modular, best-practice pytorch template for all your deep learning projects."
 authors = [{ name = "Akshay Raman", email = "ar8692@nyu.edu" }]
 license = "MIT"
