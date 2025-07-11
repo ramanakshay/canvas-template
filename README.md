@@ -2,7 +2,7 @@
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
-A simple, flexible, and modular PyTorch template for kickstarting your deep learning projects. Inspired by the agent-environment interface, Canvas aims to provide a unified template for all types of ML projects.
+A simple, flexible, and modular pytorch template for your deep learning projects. Inspired by the agent-environment interface, Canvas aims to provide a unified template for all kinds of ML projects.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
@@ -13,11 +13,11 @@ alt="Canvas Architecture">
 
 Canvas offers unique templates to kickstart various machine learning tasks:
 
-* **Supervised Learning (SL):** Perfect for tasks like classification and regression, where you have labeled data.
+* **Supervised Learning (SL):** For tasks like classification and regression with labeled data.
 
-* **Reinforcement Learning (RL):**  Designed for building agents that learn by interacting with an environment.
+* **Reinforcement Learning (RL):**  For building agents that learn by interacting with an environment.
 
-* **Self-Supervised Learning (SSL):** Train models to learn representations from unlabeled data.
+* **Self-Supervised Learning (SSL):** For training models to learn representations from unlabeled data.
 
 ## Installation
 
@@ -46,10 +46,21 @@ canvas init [sl|ssl|rl]
 alt="Canvas Demo">
 </p>
 
+## Running the Project
 
-## Project Structure
+Once your project is created, you can use the included `Makefile` to run common tasks.
 
-The directory structure of your new project will look something like this (depending on the settings that you choose):
+```
+# Install dependencies
+make install
+
+# Start model training
+make train
+```
+
+## Directory Structure
+
+The structure of your new project will look something like this (depending on the settings that you choose):
 
 ```
 example-project/
