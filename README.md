@@ -16,11 +16,11 @@ alt="Canvas Architecture">
 
 Canvas offers unique templates to kickstart various machine learning tasks:
 
-* **Supervised Learning (SL):** For tasks like classification and regression with labeled data.
+* **Supervised Learning (SL):** For tasks like classification and regression with labeled data. Example - ResNet for Image Classification.
 
-* **Reinforcement Learning (RL):**  For building agents that learn by interacting with an environment.
+* **Reinforcement Learning (RL):**  For building agents that learn by interacting with an environment. Example - PPO on Gymnasium Environment.
 
-* **Self-Supervised Learning (SSL):** For training models to learn representations from unlabeled data.
+* **Self-Supervised Learning (SSL):** For training models to learn representations from unlabeled data. Example - Next-word Prediction using GPT.
 
 ## Installation
 
