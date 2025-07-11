@@ -2,7 +2,7 @@
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
-A simple, flexible, and modular pytorch template for your deep learning projects. Inspired by the agent-environment interface, Canvas aims to provide a unified template for all kinds of ML projects.
+A simple, flexible, and modular canvas for designing your deep learning projects. Powered by PyTorch + Hydra, Canvas aims to provide a unified template for all kinds of ML projects.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
