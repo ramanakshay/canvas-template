@@ -47,23 +47,6 @@ clean:
 	{% elif cookiecutter.documentation == 'sphinx' -%}
 	rm -rf docs/_build
 	{%- endif %}
-{% if cookiecutter.documentation == 'mkdocs' -%}
-.PHONY: docs
-docs:
-	$(PYTHON) -m mkdocs build
-
-.PHONY: docs-serve
-docs-serve:
-	$(PYTHON) -m mkdocs serve
-{% elif cookiecutter.documentation == 'sphinx' -%}
-.PHONY: docs
-docs:
-	$(PYTHON) -m sphinx -b html docs/ docs/_build
-
-.PHONY: docs-serve
-docs-serve:
-	$(PYTHON) -m http.server 8000 --bind 127.0.0.1 --directory docs/_build
-{%- endif %}
 {% if cookiecutter.linting_and_formatting == 'ruff' -%}
 .PHONY: lint
 lint:
@@ -82,4 +65,21 @@ lint:
 format:
 	$(PYTHON) -m black .
 	$(PYTHON) -m isort .
+{%- endif %}
+{% if cookiecutter.documentation == 'mkdocs' -%}
+.PHONY: docs
+docs:
+	$(PYTHON) -m mkdocs build
+
+.PHONY: docs-serve
+docs-serve:
+	$(PYTHON) -m mkdocs serve
+{% elif cookiecutter.documentation == 'sphinx' -%}
+.PHONY: docs
+docs:
+	$(PYTHON) -m sphinx -b html docs/ docs/_build
+
+.PHONY: docs-serve
+docs-serve:
+	$(PYTHON) -m http.server 8000 --bind 127.0.0.1 --directory docs/_build
 {%- endif %}
