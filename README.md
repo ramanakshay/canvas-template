@@ -1,8 +1,11 @@
 # Canvas ☯︎
 
+![PyPI - Version](https://img.shields.io/pypi/v/canvas-template)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/canvas-template)
+
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
-A simple, flexible, and modular canvas for designing your deep learning projects. Powered by PyTorch + Hydra, Canvas aims to provide a unified template for all kinds of ML projects.
+A simple, flexible, and modular canvas for designing your deep learning projects. Powered by PyTorch + Hydra, Canvas aims to provide a unified template for all kinds of machine learning projects.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/architecture.svg"
@@ -33,13 +36,13 @@ pip install canvas-template
 
 ## Usage
 
-To create a new project, run the `canvas init` command and pick your template. No need to create a directory first; Canvas will do it for you.
+To create a new project, simply run the `canvas init` command and select your template. Canvas will automatically create the project directory for you.
 
 ```
 canvas init [sl|ssl|rl]
 ```
 
-**Example:** The following settings will create a project named *my_project* with the self-supervised learning (SSL) template.
+**Example:** The following command will create a project named *my_project* using the self-supervised learning (SSL) template.
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/ramanakshay/canvas/main/docs/images/canvas_demo.png"
@@ -97,10 +100,14 @@ example-project/
 
 ## Contributing
 
-Any kind of enhancement or contribution is welcome. If you have bug fixes, new features, or any improvements, I'd love your help!
+If you have bug fixes, new features, or any improvements, your contributions are highly appreciated! [Pull requests](https://github.com/ramanakshay/canvas-template/pulls) and [filing issues](https://github.com/ramanakshay/canvas-template/issues) are encouraged.
 
 ### TODOs
 
 - [ ] Experiment Tracking (wandb, tensorboard)
 - [ ] Testing Framework (pytest, unittest)
 - [ ] Distributed Training (pytorch, accelerate)
+
+## License
+
+Canvas is licensed under the MIT license.
