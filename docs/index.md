@@ -1,7 +1,4 @@
-# Canvas
-
-![PyPI - Version](https://img.shields.io/pypi/v/canvas-template)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/canvas-template)
+# Canvas ☯︎
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
@@ -97,17 +94,3 @@ example-project/
 └── outputs/                # Where experiment logs, model checkpoints, and results are saved
     └── ...
 ```
-
-## Contributing
-
-If you have bug fixes, new features, or any improvements, your contributions are highly appreciated! [Pull requests](https://github.com/ramanakshay/canvas-template/pulls) and [filing issues](https://github.com/ramanakshay/canvas-template/issues) are encouraged.
-
-### TODOs
-
-- [ ] Experiment Tracking (wandb, tensorboard)
-- [ ] Testing Framework (pytest, unittest)
-- [ ] Distributed Training (pytorch, accelerate)
-
-## License
-
-Canvas is licensed under the MIT license.

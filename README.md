@@ -100,13 +100,7 @@ example-project/
 
 ## Contributing
 
-If you have bug fixes, new features, or any improvements, your contributions are highly appreciated! [Pull requests](https://github.com/ramanakshay/canvas-template/pulls) and [filing issues](https://github.com/ramanakshay/canvas-template/issues) are encouraged.
-
-### TODOs
-
-- [ ] Experiment Tracking (wandb, tensorboard)
-- [ ] Testing Framework (pytest, unittest)
-- [ ] Distributed Training (pytorch, accelerate)
+If you have bug fixes, new features, or any improvements, your contributions are highly appreciated! Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to get involved.
 
 ## License
 
