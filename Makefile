@@ -39,3 +39,7 @@ docs:
 .PHONY: docs-serve
 docs-serve:
 	uv run -m mkdocs serve
+
+.PHONY: docs-publish
+docs-publish:
+	uv run -m mkdocs gh-deploy --force

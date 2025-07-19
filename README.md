@@ -24,13 +24,16 @@ Canvas offers unique templates to kickstart various machine learning tasks:
 
 ## Installation
 
-Canvas requires **Python 3.11+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) for installation.
+Canvas requires **Python 3.11+**. Since it's a command-line tool, we highly recommend using [uv](https://docs.astral.sh/uv/) or [pipx](https://pipx.pypa.io/stable/) for installation.
 
 ```
-# Recommended: with uv
+# with uv (Recommended)
 uv tool install canvas-template
 
-# Alternative: with pip
+# with pipx
+pipx install canvas-template
+
+# with pip
 pip install canvas-template
 ```
 
