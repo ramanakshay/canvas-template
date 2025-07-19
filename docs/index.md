@@ -1,4 +1,4 @@
-# Canvas ☯︎
+# Canvas
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 

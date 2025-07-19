@@ -2,6 +2,7 @@
 
 ![PyPI - Version](https://img.shields.io/pypi/v/canvas-template)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/canvas-template)
+[![Documentation](https://img.shields.io/badge/docs-reference-blue.svg)](https://akshayraman.com/canvas-template/)
 
 > "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
 
