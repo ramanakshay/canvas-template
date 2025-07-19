@@ -15,11 +15,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python and uv
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'uv'
+          python-version: 3.11
+
+      - name: Install uv and enable caching
+        uses: astral-sh/setup-uv@v6 # Use the official uv setup action
+        with:
+          python-version: 3.11 # Ensure this matches your setup-python version
+          enable-cache: true  # This enables uv's internal cache with GitHub Actions caching
 
       - name: Install documentation dependencies
         run: make docs-install
