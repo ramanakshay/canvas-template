@@ -83,7 +83,7 @@ example-project/
 │   ├── main.py             # The main entry point of your project
 │   ├── config/             # Hydra configuration files for managing settings
 │   │   └── config.yaml
-│   ├── model/              # Your deep learning model definitions
+│   ├── model/              # Core deep learning model definitions
 │   │   ├── __init__.py
 │   │   ├── model.py
 │   │   ├── network.py
@@ -92,13 +92,13 @@ example-project/
 │   │   ├── __init__.py
 │   │   ├── data.py
 │   │   └── preprocess.py
-│   └── algorithm/          # The core algorithm: training, evaluation
+│   └── algorithm/          # Training and evaluation algorithms
 │       ├── __init__.py
 │       ├── trainer.py
 │       └── evaluator.py
 ├── dataset/                # Place your raw or processed datasets here
 │   └── ...
-└── outputs/                # Where experiment logs, model checkpoints, and results are saved
+└── outputs/                # Where hydra logs, model checkpoints, and results are saved
     └── ...
 ```
 
