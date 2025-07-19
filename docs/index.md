@@ -94,6 +94,6 @@ example-project/
 │       └── evaluator.py
 ├── dataset/                # Place your raw or processed datasets here
 │   └── ...
-└── outputs/                # Where experiment logs, model checkpoints, and results are saved
+└── outputs/                # Where hydra logs, model checkpoints, and results are saved
     └── ...
 ```
