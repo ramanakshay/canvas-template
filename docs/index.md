@@ -1,6 +1,6 @@
 # Canvas
 
-> "Beauty is as important in computing as it is in painting or architecture." — Donald E. Knuth
+> "The art of programming is the art of organizing complexity, of mastering details and of striking a balance between conflicting objectives." — Donald E. Knuth
 
 A simple, flexible, and modular canvas for designing your deep learning projects. Powered by PyTorch + Hydra, Canvas aims to provide a unified template for all kinds of machine learning projects.
 
